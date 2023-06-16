@@ -7,31 +7,33 @@ from faker import Faker
 # Local imports
 from app import app
 from models import db, Word, Snippet, Frame, User
-
-
+fake = Faker()
+Faker.seed(0)
 def make_users():
     users = []
     for _ in range(30):
-        while _ in users:
-
-            user = User(
-                name=fake.name(),
-                email=fake.email(),
-                password=fake.password(length=8)
-            )
+        
+        
+            
+        user = User(
+            name=fake.name(),
+            email=fake.email(),
+            password=fake.password(length=8)
+        )
         users.append(user)
     return users
 
 def make_words():
     words = []
     for _ in range(30):
-        while _ in words:
+        
 
-            word = Word(
-                name=fake.text(max_nb_chars=20),
-                description=fake.sentences(),
-                audio_url=fake.url()
-            )
+        word = Word(
+            name=fake.text(max_nb_chars=10),
+            description=fake.text(max_nb_chars=20),
+            audio_url=fake.url()
+        )
+        
         words.append(word)
     return words
 
@@ -45,7 +47,7 @@ def make_snippets():
                 description=fake.sentences(),
                 word_id=randint(1, 30),
             )
-        snippets.append(snippet)
+            snippets.append(snippet)
     return snippets
 
 def make_frames():
@@ -58,7 +60,7 @@ def make_frames():
                 user_id=randint(1, 20),
                 snippet_id=randint(1, 20),
             )
-        frames.append(frame)
+            frames.append(frame)
     return frames
 
 if __name__ == '__main__':

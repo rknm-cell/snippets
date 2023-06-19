@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
   StyleSheet,
   Button,
@@ -6,17 +7,27 @@ import {
   SafeAreaView,
   Text,
   Alert,
+  ImageBackground,
 } from "react-native";
-function HomeScreen() {
-  const Separator = () => <View style={styles.separator} />;
 
+const homeBackground = { uri: "/assets/dddepth-316.jpg" };
+
+export default function HomeScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text style={styles.title} >This is the homescreen</Text>
-        <Button title="Press me" onPress={() => Alert.alert("You did it!")} />
-      </View>
-    </SafeAreaView>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <ImageBackground
+        style={styles.background}
+        resizeMode="cover"
+        source={require("./assets/dddepth-316.jpg")}
+      >
+        <Text style={styles.title}>Home Screen</Text>
+        <Button
+          style={styles.button}
+          title="Login"
+          onPress={() => navigation.navigate("Login")}
+        />
+      </ImageBackground>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -28,6 +39,11 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     marginVertical: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 40,
+    padding: 25,
+    position: "relative",
   },
   fixToText: {
     flexDirection: "row",
@@ -38,5 +54,15 @@ const styles = StyleSheet.create({
     borderBottomColor: "#737373",
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
+  background: {
+    height: 1000,
+    width: 1000,
+    
+    justifyContent: "center",
+    flex: 1,
+  },
+  button: {
+    flex: 1,
+    marginVertical: 8,
+  },
 });
-export default HomeScreen;

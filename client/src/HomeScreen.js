@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { useState, createContext, useContext } from "react";
 import {
   StyleSheet,
   Button,
@@ -12,7 +12,10 @@ import {
 
 const homeBackground = { uri: "/assets/dddepth-316.jpg" };
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation, user, login, words}) {
+// const {user, setUser} = useContext(UserContext)
+console.log(words)
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <ImageBackground
@@ -21,11 +24,15 @@ export default function HomeScreen({ navigation }) {
         source={require("./assets/dddepth-316.jpg")}
       >
         <Text style={styles.title}>Home Screen</Text>
-        <Button
-          style={styles.button}
-          title="Login"
-          onPress={() => navigation.navigate("Login")}
-        />
+        {/* {login ? 
+        null : <Button
+        style={styles.button}
+        title="Login"
+        onPress={() => {navigation.navigate("Login")}}
+      /> } */}
+      <Button style={styles.button}
+      title="Words"
+      onPress={() => {navigation.navigate("Words")}}/>
       </ImageBackground>
     </View>
   );
@@ -64,5 +71,6 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginVertical: 8,
+    width: 10,
   },
 });

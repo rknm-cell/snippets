@@ -90,5 +90,36 @@ class Logout(Resource):
 
 
 api.add_resource(Logout, '/logout')
+
+class Frames(Resource):
+    def get(self):
+        try:
+            frames = Frame.query.all()
+            new_frames = []
+            for f in frames:
+                new_frames.append(
+                    f.to_dict(only=("id", "name", "description", "snippet_id")))
+
+            return new_frames, 200
+        except:
+            return {"frames not found"}, 404
+    def post(self):
+        try:
+            new_frame = Frame(
+                name = request.json['name'],
+                description = request.json['description'],
+                
+                
+            )
+            db.session.add(new_frame)
+            db.session.commit()
+            new_frame_dict = new_frame.to_dict()
+            response = make_response(
+                new_frame_dict, 201
+            )
+            return response
+        except:
+            return {"no dice", 400}
+api.add_resource(Frames, '/frames')
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

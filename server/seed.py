@@ -78,7 +78,8 @@ if __name__ == '__main__':
         # words = make_words()
         word1 = Word(name='stinks', description='angry man yelling \'oh brother, this guy stinks!\'', audio_url='./assets/audio/oh-brother-this-guy-stinks.mp3')
         word2 = Word(name='bruh', description='bruh', audio_url='./assets/audio/bruh.mp3' )
-        words = [word1, word2]
+        word3 = Word(name='shut up', description='homer simpson saying \'shut up\'', audio_url='./assets/audio/shut-up.mp3')
+        words = [word1, word2, word3]
         db.session.add_all(words)
         db.session.commit()
 

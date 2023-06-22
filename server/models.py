@@ -91,10 +91,10 @@ class Frame(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     description = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     snippet_id = db.Column(db.Integer, db.ForeignKey(
-        'snippets.id'), nullable=False)
-
+        'snippets.id'))
+    
     def __repr__(self):
         return f'<{self.id}, {self.name}>'
 

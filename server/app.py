@@ -8,7 +8,7 @@ from flask_restful import Resource
 
 # Local imports
 from config import app, db, api
-from models import User, Word, Snippet, Frame
+from models import User, Word, Frame
 
 # Views go here!
 
@@ -98,7 +98,7 @@ class Frames(Resource):
             new_frames = []
             for f in frames:
                 new_frames.append(
-                    f.to_dict(only=("id", "name", "description", "snippet_id")))
+                    f.to_dict(only=("id", "name", "description")))
 
             return new_frames, 200
         except:

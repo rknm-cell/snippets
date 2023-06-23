@@ -34,9 +34,8 @@ class User(db.Model, SerializerMixin):
     name = db.Column(db.String)
     email = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String, nullable=False)
-    snippets = association_proxy('frames', 'snippets')
+    
     frames = db.relationship('Frame', backref='user')
-
 
     @hybrid_property
     def password_hash(self):
@@ -69,21 +68,21 @@ class Word(db.Model, SerializerMixin):
     description = db.Column(db.String)
     audio_url = db.Column(db.String)
 
-    snippets = db.relationship('Snippet', backref='word')
+    frames = db.relationship('Frame', backref='word')
 
     def __repr__(self):
         return f'<{self.id}, {self.name}>'
 
 
-class Snippet(db.Model, SerializerMixin):
-    __tablename__ = 'snippets'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    description = db.Column(db.String)
-    word_id = db.Column(db.Integer, db.ForeignKey('words.id'), nullable=False)
-    users = association_proxy('frames', 'users')
+# class Snippet(db.Model, SerializerMixin):
+#     __tablename__ = 'snippets'
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String)
+#     description = db.Column(db.String)
+#     word_id = db.Column(db.Integer, db.ForeignKey('words.id'), nullable=False)
+#     users = association_proxy('frames', 'users')
 
-    frames = db.relationship('Frame', backref='snippet')
+#     frames = db.relationship('Frame', backref='snippet')
 
 
 class Frame(db.Model, SerializerMixin):
@@ -92,9 +91,8 @@ class Frame(db.Model, SerializerMixin):
     name = db.Column(db.String)
     description = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    snippet_id = db.Column(db.Integer, db.ForeignKey(
-        'snippets.id'))
-    
+    word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
+
     def __repr__(self):
         return f'<{self.id}, {self.name}>'
 

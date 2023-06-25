@@ -33,6 +33,9 @@ console.log(words)
       <Button style={styles.button}
       title="Words"
       onPress={() => {navigation.navigate("Words")}}/>
+      <Button style={styles.button}
+      title="Frames"
+      onPress={() => {navigation.navigate("Frames")}}/>
       </ImageBackground>
     </View>
   );

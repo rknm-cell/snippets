@@ -67,6 +67,7 @@ class Word(db.Model, SerializerMixin):
     name = db.Column(db.String)
     description = db.Column(db.String)
     audio_url = db.Column(db.String)
+    clicked = db.Column(db.Integer)
 
     frames = db.relationship('Frame', backref='word')
 
@@ -74,6 +75,7 @@ class Word(db.Model, SerializerMixin):
         return f'<{self.id}, {self.name}>'
 
 
+    
 # class Snippet(db.Model, SerializerMixin):
 #     __tablename__ = 'snippets'
 #     id = db.Column(db.Integer, primary_key=True)

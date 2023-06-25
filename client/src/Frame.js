@@ -9,14 +9,53 @@ import {
   ImageBackground,
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
+import Words from "./Words";
 export default function Frame({ frame }) {
   const [frameWords, setFrameWords] = useState([]);
-  const filteredWords = frameWords.filter(
-    (item) => localStorage.getItem("user_session") == frame.word_id
-  );
+  // const filteredWords = frameWords.filter(
+  //   (item) => localStorage.getItem("frame") == frame.word_id
+  // );
   return (
-    <View>
-      <Words />
+    <View style={styles.container}>
+      <WordContainerScreen />
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginHorizontal: 16,
+    backgroundColor: "red",
+  },
+  title: {
+    textAlign: "center",
+    marginVertical: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 40,
+    padding: 25,
+    position: "relative",
+  },
+  fixToText: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: "#737373",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  background: {
+    height: 1000,
+    width: 1000,
+    
+    justifyContent: "center",
+    flex: 1,
+  },
+  button: {
+    flex: 1,
+    marginVertical: 8,
+    width: 10,
+  },
+});

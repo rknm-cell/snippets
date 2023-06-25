@@ -3,7 +3,7 @@
 # Standard library imports
 
 # Remote library imports
-from flask import Flask, request, session, make_response 
+from flask import Flask, request, session, make_response
 from flask_restful import Resource
 
 # Local imports
@@ -25,12 +25,13 @@ class Words(Resource):
             return new_words, 200
         except:
             return {"words not found"}, 404
+
     def post(self):
         try:
             new_word = Word(
-                name = request.json['name'],
-                description = request.json['description'],
-                audio_url = request.json['audio_url']
+                name=request.json['name'],
+                description=request.json['description'],
+                audio_url=request.json['audio_url']
             )
             db.session.add(new_word)
             db.session.commit()
@@ -45,8 +46,23 @@ class Words(Resource):
 
 api.add_resource(Words, '/words')
 
-# class WordsById(Resource):
-# api.add_resource(WordsById, '/words/<int:id>')
+
+class WordsById(Resource):
+    def get(self, id):
+        word = Word.query.filter_by(id=id).first()
+        if not word:
+            return make_response({
+                "error": "Word not found"
+            }, 404)
+        word_dict = word.to_dict(
+            rules=('name', 'description', 'audio_url', ))
+        response = make_response(word_dict, 200)
+        return response
+
+
+api.add_resource(WordsById, '/words/<int:id>')
+
+
 class Login(Resource):
     def post(self):
         email = request.get_json()['email']
@@ -91,6 +107,7 @@ class Logout(Resource):
 
 api.add_resource(Logout, '/logout')
 
+
 class Frames(Resource):
     def get(self):
         try:
@@ -103,13 +120,14 @@ class Frames(Resource):
             return new_frames, 200
         except:
             return {"frames not found"}, 404
+
     def post(self):
         try:
             new_frame = Frame(
-                name = request.json['name'],
-                description = request.json['description'],
-                
-                
+                name=request.json['name'],
+                description=request.json['description'],
+
+
             )
             db.session.add(new_frame)
             db.session.commit()
@@ -120,6 +138,8 @@ class Frames(Resource):
             return response
         except:
             return {"no dice", 400}
+
+
 api.add_resource(Frames, '/frames')
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

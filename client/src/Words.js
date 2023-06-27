@@ -10,9 +10,10 @@ import {
   ImageBackground,
 } from "react-native";
 
-export default function Words({ word, audio, navigation}) {
+export default function Words({ word, audio, navigation, frame }) {
   const [sound, setSound] = useState();
-
+  
+  
   console.log(word);
   // console.log(word.audio_url)
   // console.log('here')
@@ -47,10 +48,43 @@ export default function Words({ word, audio, navigation}) {
       : undefined;
   }, [sound]);
   //navigate to word details
-function handleWordClick(){
-  console.log(word)
-  navigate(`/words/${word.id}`, state.id)
-}
+  function handleWordClick() {
+    console.log(word);
+    navigate(`/words/${word.id}`, state.id);
+    useEffect(() => {
+      fetch("http://127.0.0.1:5555/wordframes")
+        // change fetch addres to ip address of local network
+        // 10.129.3.215
+  
+        .then((r) => r.json())
+        .then((data) => {
+          console.log(data);
+          setWordFrames(data);
+        });
+    }, []);
+  }
+  console.log(word.id)
+  console.log(frame.id)
+function handleAddToWordFrame () {
+    fetch("http://127.0.0.1:5555/wordframes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          word_id: [5],
+          frame_id: [1],
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          console.log(data)
+          setFrame(data);
+        })
+        .catch(error => {
+          console.error(error)
+        })
+  }
   return (
     <>
       <View style={styles.container}>
@@ -60,8 +94,17 @@ function handleWordClick(){
           title="Word detail"
           word={word}
           onPress={() => {
-            navigation.navigate(`WordDetails`, {word})
+            navigation.navigate(`WordDetails`, { word });
             console.log(word);
+          }}
+        />
+        <Button
+          title="Add to frame"
+          onPress={() => {
+            {handleAddToWordFrame}
+            console.log(word.name);
+            console.log(word.id);
+            console.log(frame.id)
           }}
         />
       </View>

@@ -20,7 +20,7 @@ class Words(Resource):
             new_words = []
             for w in words:
                 new_words.append(
-                    w.to_dict(only=("id", "name", "description", "audio_url")))
+                    w.to_dict(only=("id", "name", "description", "audio_url", )))
 
             return new_words, 200
         except:
@@ -35,7 +35,7 @@ class Words(Resource):
             )
             db.session.add(new_word)
             db.session.commit()
-            new_word_dict = new_word.to_dict()
+            new_word_dict = new_word.to_dict(only=("id", "word_id", "frame_id", ))
             response = make_response(
                 new_word_dict, 201
             )
@@ -45,6 +45,7 @@ class Words(Resource):
 
 
 api.add_resource(Words, '/words')
+
 
 
 class WordsById(Resource):
@@ -62,7 +63,36 @@ class WordsById(Resource):
 
 api.add_resource(WordsById, '/words/<int:id>')
 
+# class WordFrames(Resource):
+#     def get(self):
+#         try:
+#             wordframes = WordFrame.query.all()
+#             new_wordframes = []
+#             for w in wordframes:
+#                 new_wordframes.append(
+#                     w.to_dict())
 
+#             return new_wordframes, 200
+#         except:
+#             return {"words not found"}, 404
+#     def post(self):
+#         try:
+#             new_wordframe = WordFrame(
+            
+#                 word_id=request.json['word_id'],
+#                 frame_id=request.json['frame_id']
+#             )
+#             db.session.add(new_wordframe)
+#             db.session.commit()
+#             new_word_dict = new_wordframe.to_dict()
+#             response = make_response(
+#                 new_word_dict, 201
+#             )
+#             return response
+#         except:
+#             return {"no dice", 400}    
+
+# api.add_resource(WordFrames, '/wordframes')
 class Login(Resource):
     def post(self):
         email = request.get_json()['email']
@@ -107,6 +137,41 @@ class Logout(Resource):
 
 api.add_resource(Logout, '/logout')
 
+class WordFrames(Resource):
+    def get(self):
+        frames = Frame.query.all()
+        frames_with_words = []
+
+        for frame in frames:
+            frame_data = {
+                'id': frame.id,
+                'name': frame.name,
+                'words': [word.id for word in frame.words]
+            }
+            frames_with_words.append(frame_data)
+
+        return frames_with_words, 200
+
+    def post(self):
+        payload = request.json
+        word_ids = payload.get('word_ids', [])
+        frame_ids = payload.get('frame_ids', [])
+
+        if not word_ids or not frame_ids:
+            return {'message': 'Invalid payload. Both "words" and "frame_ids" must be provided.'}, 400
+        words = Word.query.filter(Word.id.in_(word_ids)).all()
+        frames = Frame.query.filter(Frame.id.in_(frame_ids)).all()
+        if len(words) != len(word_ids) or len(frames) != len(frame_ids):
+            return {'message': 'Invalid word IDs or frame IDs provided.'}, 400
+
+    
+        for word in words:
+            for frame in frames:
+                frame.words.append(word)
+        db.session.commit()
+        return {'message': 'Words added to frames successfully.'}, 201
+    
+api.add_resource(WordFrames, '/wordframes')
 
 class Frames(Resource):
     def get(self):
@@ -115,7 +180,7 @@ class Frames(Resource):
             new_frames = []
             for f in frames:
                 new_frames.append(
-                    f.to_dict(only=("id", "name", "description")))
+                    f.to_dict(only=("id", "name", "description", )))
 
             return new_frames, 200
         except:
@@ -126,7 +191,7 @@ class Frames(Resource):
             new_frame = Frame(
                 name=request.json['name'],
                 description=request.json['description'],
-
+                
 
             )
             db.session.add(new_frame)
@@ -141,5 +206,35 @@ class Frames(Resource):
 
 
 api.add_resource(Frames, '/frames')
+class FramesById(Resource):
+    def get(self, id):
+        try:
+            frame = Frame.query.filter_by(id=id).first()
+            return frame.to_dict()
+        except:
+            return {"error": "404: Frame not found"}, 404
+
+    def delete(self, id):
+        try:
+            frame = frame.query.filter_by(id=id).first()
+            db.session.delete(frame)
+            db.session.commit()
+            return {}, 204
+        except:
+            return {'error': '404: Frame not found'}, 404
+    def patch(self, id):
+        try: 
+            frame = frame.query.filter_by(id=id).first()
+            if request.json['word_id']:
+                setattr(frame, 'word_id', request.json['word_id'])
+            db.session.add(frame)
+            db.session.commit()
+            return frame.to_dict(), 205
+
+        except:
+            return {"error" : "Patch not working"}, 400
+
+api.add_resource(FramesById, '/frames/<int:id>')
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

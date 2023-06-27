@@ -1,5 +1,6 @@
-import React, {Component, useEffect, useState} from "react";
+import React, {Component, useContext, useEffect, useState} from "react";
 import { Audio } from "expo-av";
+import { Icon, IconButton } from '@rneui/themed';
 import {
     StyleSheet,
     Button,
@@ -8,13 +9,19 @@ import {
     Text,
     Alert,
     ImageBackground,
+    
   } from "react-native";
+import FramesContextProvider from "./store/context/framesContext";
 
 //set up word details
 
-export default function WordDetails({ route}){
+export default function WordDetails({ route, frame }){
+    const frameWordCtx = useContext(FramesContextProvider);
+
     const {word} = route.params; 
     const [sound, setSound] = useState();
+    // const wordInFrame = frameWordCtx.ids.includes(word.id);
+
     console.log(word)
     const soundPlay = require(`${word.audio_url}`);
     async function playSound() {
@@ -40,18 +47,40 @@ export default function WordDetails({ route}){
             }
           : undefined;
       }, [sound]);
-
-function handleAddToFrame(){
-    console.log(word.name)
+console.log(word.id)
+console.log(frame.id)
+function handleAddToFrame () {
+    console.log(`${word.name} added to ${frame.name}`)
+    console.log(word.id)
+    fetch("http://127.0.0.1:5555/wordframes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          word_ids: [word.id],
+          frame_ids: [frame.id],
+        }),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          console.log(data)
+        //   setFrame(data);
+        });
+    // if (wordInFrame) {
+    //     frameWordCtx.removeFromFrame(word.id)
+    // } else {
+    //     frameWordCtx.addToFrame(word.id)
+    // }
 }
 
     return (
         <View>
             <Text>{word.name}</Text>
-            <Text>Word Description</Text>
+            <Text>{word.description}</Text>
             
         <Button title={`Play ${word.name}`} onPress={playSound} />
-            <Button title="Add to frame"/>
+            <Button title={`Add to frame`} onPress={handleAddToFrame}/>
             {/* <Button title={word.name} onPress={playSound}/>
             <Button title="add to frame" onPress={handleAddToFrame}/> */}
         </View>

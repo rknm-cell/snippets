@@ -12,8 +12,9 @@ import {
 
 const homeBackground = { uri: "/assets/dddepth-316.jpg" };
 
-export default function HomeScreen({ navigation, user, login, words}) {
+export default function HomeScreen({ navigation, user, login, route}) {
 // const {user, setUser} = useContext(UserContext)
+const {words} = route.params; 
 console.log(words)
 
   return (
@@ -32,10 +33,13 @@ console.log(words)
       /> } */}
       <Button style={styles.button}
       title="Words"
-      onPress={() => {navigation.navigate("Words")}}/>
+      onPress={() => {navigation.navigate("Words"), {words}}}/>
       <Button style={styles.button}
       title="Frames"
-      onPress={() => {navigation.navigate("Frames")}}/>
+      onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
+      <Button style={styles.button}
+      title="Create a Frame"
+      onPress={() => {navigation.navigate("FrameCreator")}}/>
       </ImageBackground>
     </View>
   );

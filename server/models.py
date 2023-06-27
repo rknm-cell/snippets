@@ -1,10 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import validates, relationship, DeclarativeBase
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy_serializer import SerializerMixin
+
 from config import db, bcrypt
 
 # app = Flask(__name__)
@@ -35,7 +36,7 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String, unique=True, nullable=False)
     _password_hash = db.Column(db.String, nullable=False)
     
-    frames = db.relationship('Frame', backref='user')
+    # frames = db.relationship('Frame', backref='user')
 
     @hybrid_property
     def password_hash(self):
@@ -61,6 +62,10 @@ class User(db.Model, SerializerMixin):
         return f'<{self.id}, {self.name}>'
 
 
+wordframe = db.Table('wordframe',
+    db.Column('word_id', db.Integer, db.ForeignKey('words.id'), primary_key=True),
+    db.Column('frame_id', db.Integer, db.ForeignKey('frames.id'), primary_key=True)
+)
 class Word(db.Model, SerializerMixin):
     __tablename__ = 'words'
     id = db.Column(db.Integer, primary_key=True)
@@ -68,23 +73,28 @@ class Word(db.Model, SerializerMixin):
     description = db.Column(db.String)
     audio_url = db.Column(db.String)
     clicked = db.Column(db.Integer)
+    frames = db.relationship('Frame', secondary=wordframe, back_populates='words')
 
-    frames = db.relationship('Frame', backref='word')
+    # frames = db.relationship('Frame', secondary=wordframes, backref=db.backref('words', lazy='dynamic'))
+    # wordframes = db.relationship('WordFrame', backref='word')
+    # frames = db.relationship('Frame', back_populates=('words'))
 
     def __repr__(self):
         return f'<{self.id}, {self.name}>'
 
 
-    
-# class Snippet(db.Model, SerializerMixin):
-#     __tablename__ = 'snippets'
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String)
-#     description = db.Column(db.String)
-#     word_id = db.Column(db.Integer, db.ForeignKey('words.id'), nullable=False)
-#     users = association_proxy('frames', 'users')
 
-#     frames = db.relationship('Frame', backref='snippet')
+# class WordFrame(db.Model, SerializerMixin):
+#     __tablename__ = 'wordframes'
+#     id = db.Column(db.Integer, primary_key=True)
+
+#     word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
+#     frame_id = db.Column(db.Integer, db.ForeignKey('frames.id'))
+    # users = association_proxy('frames', 'words')
+
+    # frames = db.relationship('Frame', backref='snippet')
+
+
 
 
 class Frame(db.Model, SerializerMixin):
@@ -92,9 +102,15 @@ class Frame(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     description = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
+    
+    words = db.relationship('Word', secondary=wordframe, back_populates='frames')
 
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # word_frames = db.relationship('WordFrame', backref='frame')
+    # word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
+    # wordframe_id = db.Column(db.Integer, db.ForeignKey('wordframes.id'))
+    
+    
     def __repr__(self):
         return f'<{self.id}, {self.name}>'
 

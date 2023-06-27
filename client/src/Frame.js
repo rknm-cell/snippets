@@ -10,17 +10,28 @@ import {
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
 import Words from "./Words";
-export default function Frame({ frame }) {
+export default function Frame({ frame,words}) {
+  // const {words} = route.params; 
   const [frameWords, setFrameWords] = useState([]);
   // const filteredWords = frameWords.filter(
   //   (item) => localStorage.getItem("frame") == frame.word_id
   // );
+  console.log(words)
+  function renderWords(){
+    return words.map((word) => {
+        return (<Words key={word.id} word={word} name={word.name} audio={word.audio_url} navigation={navigation}/>)
+    })
+}
+
   return (
     <View style={styles.container}>
-      <WordContainerScreen />
+      {/* <WordContainerScreen /> */}
+      {renderWords()}
     </View>
   );
 }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

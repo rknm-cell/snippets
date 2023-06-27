@@ -14,7 +14,7 @@ import {UserContext} from './UserContext';
 import {useSelector, useDispatch} from 'react-redux';
 import { useGlobalState } from './GlobalState';
 // import {setWords} from './redux/actions'
-export default function WordContainerScreen({navigation}) {
+export default function WordContainerScreen({navigation, frame}) {
     // const words = useSelector(state=> state.userReducer)
     const [words, setWords] = useGlobalState();
     console.log(words)
@@ -34,7 +34,7 @@ export default function WordContainerScreen({navigation}) {
 // const renderItem = ({word}) => {<Words wordObj={word} />}
 function renderWords(){
     return words.map((word) => {
-        return (<Words key={word.id} word={word} name={word.name} audio={word.audio_url} navigation={navigation}/>)
+        return (<Words key={word.id} word={word} name={word.name} audio={word.audio_url} frame={frame} navigation={navigation}/>)
     })
 }
   return (

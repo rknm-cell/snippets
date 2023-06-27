@@ -23,6 +23,9 @@ import { Store } from "./redux/store";
 import { GlobalStateProvider, useGlobalState } from "./GlobalState";
 import FramesContextProvider from "./store/context/framesContext";
 import WordDetails from "./WordDetails";
+import FrameCreator from "./FrameCreator";
+import WordFrames from "./wordFrames";
+import FrameDetails from "./FrameDetails";
 // const UserContext = createContext();
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -30,8 +33,9 @@ export default function App() {
   const [user, setUser] = useState(true);
   const [session, setSession] = useState(null);
   const [login, setLogin] = useState(true);
-const[word, setWord] = useState([])
+  const [word, setWord] = useState([]);
   console.log(user);
+
   useEffect(() => {
     fetch("http://127.0.0.1:5555/words")
       // change fetch addres to ip address of local network
@@ -43,6 +47,7 @@ const[word, setWord] = useState([])
         setWords(data);
       });
   }, []);
+
   // const footerConfig = {
   //   tabBarPosition: "bottom",
   // };
@@ -63,7 +68,7 @@ const[word, setWord] = useState([])
             <Stack.Screen
               name="Home"
               component={HomeScreen}
-              props={words}
+              initialParams={{ words }}
               options={{ title: "Home" }}
             />
             <Stack.Screen
@@ -80,12 +85,23 @@ const[word, setWord] = useState([])
               options={{ title: "WordDetails" }}
             />
             <Stack.Screen
-              name="Frames"
+              name="FrameContainerScreen"
               component={FrameContainerScreen}
-              words={words}
+              initialParams={{ words }}
               options={{ title: "Frames" }}
             />
-
+            <Stack.Screen
+              name="FrameDetails"
+              component={FrameDetails}
+              initialParams={{ words }}
+              options={{ title: "Frame Details" }}
+            />
+            <Stack.Screen
+              name="FrameCreator"
+              component={FrameCreator}
+              initialParams={{ words }}
+              options={{ title: "FrameCreator" }}
+            />
             <Stack.Screen
               name="Login"
               login={login}
@@ -108,7 +124,12 @@ const[word, setWord] = useState([])
               name="Word Details"
               component={WordDetails}
               options={{ title: "Word Details" }}
-              initialParams={{ itemId: words.id}}
+              initialParams={{ itemId: words.id }}
+            />
+            <Stack.Screen
+              name="Word Frames"
+              component={WordFrames}
+              options={{ title: "Word Frames" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

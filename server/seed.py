@@ -68,12 +68,17 @@ if __name__ == '__main__':
         print("Clearing database...")
         # User.query.delete()
         Word.query.delete()
-        # Snippet.query.delete()
-        # Frame.query.delete()
+        # WordFrame.query.delete()
+        Frame.query.delete()
         # print("Seeding users...")
         # users = make_users()
         # db.session.add_all(users)
         # db.session.commit()
+        frame1 = Frame(name='Frame 1', description="Frame One")
+        frame2 = Frame(name="Frame 2", description="Frame Two")
+        frames = [frame1, frame2]
+        db.session.add_all(frames)
+        db.session.commit()
         print("Seeding words...")
         # words = make_words()
         word1 = Word(name='stinks', description='angry man yelling \'oh brother, this guy stinks!\'', audio_url='./assets/audio/oh-brother-this-guy-stinks.mp3')
@@ -131,11 +136,17 @@ if __name__ == '__main__':
         word53 = Word(name='who', description='who', audio_url='./assets/audio/MelodyPhrases/Who-ProL2_36.wav')
         word54 = Word(name='why', description='why', audio_url='./assets/audio/MelodyPhrases/Why-ProL2_35.wav')
         
-        # words = [word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12, word13, word14, word15, word16, word17, word18, word19, word20, word21, word22, word23, word24, word25, word26, word27, word28, word29, word30, word31, word32, word33, word34, word35, word36, word37, word38, word39, word40, word41, word42, word43, word44, word45, word46, word47, word48, word49, word50, word51, word52, word53, word54]
-        words = [word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, ]
+        words = [word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, word11, word12, word13, word14, word15, word16, word17, word18, word19, word20, word21, word22, word23, word24, word25, word26, word27, word28, word29, word30, word31, word32, word33, word34, word35, word36, word37, word38, word39, word40, word41, word42, word43, word44, word45, word46, word47, word48, word49, word50, word51, word52, word53, word54]
+        # words = [word1, word2, word3, word4, word5, word6, word7, word8, word9, word10, ]
         db.session.add_all(words)
         db.session.commit()
 
+        # wordframe1 = WordFrame( word_id=1, frame_id=1)
+        # wordframe2 = WordFrame( word_id=4, frame_id=2)
+        # wordframes= [wordframe1, wordframe2]
+        # db.session.add_all(wordframes)
+        # print("Posting wordframes")
+        # db.session.commit()
         # print("Seeding snippets...")
         # snippets = make_snippets()
         # db.session.add_all(snippets)

@@ -20,7 +20,7 @@ import AppStateProvider from "./AppStateContext";
 import { UserContext } from "./UserContext";
 import { Provider } from "react-redux";
 import { Store } from "./redux/store";
-// import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { GlobalStateProvider, useGlobalState } from "./GlobalState";
 import FramesContextProvider from "./store/context/framesContext";
 import WordDetails from "./WordDetails";

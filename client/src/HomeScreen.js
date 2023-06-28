@@ -25,12 +25,12 @@ console.log(words)
         source={require("./assets/dddepth-316.jpg")}
       >
         <Text style={styles.title}>Home Screen</Text>
-        {/* {login ? 
+        {login ? 
         null : <Button
         style={styles.button}
         title="Login"
         onPress={() => {navigation.navigate("Login")}}
-      /> } */}
+      /> }
       <Button style={styles.button}
       title="Words"
       onPress={() => {navigation.navigate("Words"), {words}}}/>

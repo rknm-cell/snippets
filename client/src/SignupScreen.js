@@ -15,7 +15,7 @@ export default function SignupScreen({ setSession }) {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   function handleSubmit() {
-    fetch("/signup", {
+    fetch("http://127.0.0.1:5555/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default function SignupScreen({ setSession }) {
       if (r.ok) {
         r.json().then((user) => {
           onLogin(user);
-          fetch("/shopping_sessions", {
+          fetch("http://127.0.0.1:5555/signup", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function SignupScreen({ setSession }) {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <Button title="Submit" onPress={() => handleSubmit}/>
+          <Button title="Submit" onPress={() => handleSubmit()}/>
         </View>
       </Formik>
     </>

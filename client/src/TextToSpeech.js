@@ -1,59 +1,45 @@
-import React from 'react';
-import { View, Button } from 'react-native';
-import Tts from 'react-native-tts';
-import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import React, { useState } from 'react';
+import { Text, View, Button, TextInput } from 'react-native';
+import * as Speech from 'expo-speech';
+import * as FileSystem from 'expo-file-system';
 
-class TextToSpeech extends React.Component {
-  constructor(props) {
-    super(props);
-    this.audioPath = '';
-    this.audioRecorderPlayer = new AudioRecorderPlayer();
-  }
+const TextToSpeech = ({word}) => {
+  console.log(word.description)
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
-  componentDidMount() {
-    this.setupTextToSpeech();
-  }
-
-  setupTextToSpeech = async () => {
-    await Tts.getInitStatus();
-    Tts.setDefaultRate(0.5);
-    Tts.setDefaultLanguage('en-US');
+  const speakText = async () => {
+    setIsSpeaking(true);
+    await Speech.speak(word.description, { rate: 0.75 });
+    setIsSpeaking(false);
   };
 
-  speakText = async (text) => {
-    Tts.stop();
-    Tts.speak(text);
-    const utteranceId = await Tts.speak(text);
-    Tts.addEventListener('tts-finish', () => {
-      this.saveAudio(utteranceId);
-    });
-  };
+//   const saveAudio = async () => {
+//     const { uri } = await Speech.synthesizeSpeech({ text });
+//     const fileUri = FileSystem.documentDirectory + 'text_to_speech_audio.wav';
+//     await FileSystem.moveAsync({ from: uri, to: fileUri });
+//     alert(`Audio saved to ${fileUri}`);
+//   };
 
-  saveAudio = async (utteranceId) => {
-    const audioPath = await this.audioRecorderPlayer.startRecorder();
-    this.audioPath = audioPath;
-  };
-
-  stopRecording = async () => {
-    await this.audioRecorderPlayer.stopRecorder();
-  };
-
-  playAudio = async () => {
-    await this.audioRecorderPlayer.startPlayer(this.audioPath);
-  };
-
-  render() {
-    return (
-      <View>
-        <Button
-          title="Speak Text"
-          onPress={() => this.speakText('Hello, world!')}
-        />
-        <Button title="Stop Recording" onPress={this.stopRecording} />
-        <Button title="Play Audio" onPress={this.playAudio} />
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      {/* <Text>Enter the text to convert:</Text>
+      <TextInput
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+        onChangeText={setText}
+        value={text}
+      /> */}
+      <Button
+        title={word.name}
+        onPress={speakText}
+        disabled={isSpeaking}
+      />
+      {/* <Button
+        title="Save Audio"
+        onPress={saveAudio}
+        disabled={isSpeaking || text === ''}
+      /> */}
+    </View>
+  );
+};
 
 export default TextToSpeech;

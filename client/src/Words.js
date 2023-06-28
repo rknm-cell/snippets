@@ -9,7 +9,7 @@ import {
   Alert,
   ImageBackground,
 } from "react-native";
-
+import TextToSpeech from "./TextToSpeech";
 export default function Words({
   word,
   audio,
@@ -32,7 +32,7 @@ export default function Words({
   // console.log(word.audio_url)
   // console.log('here')
 
-  const soundPlay = require(`${audio}`);
+  // const soundPlay = require(`${audio}`);
   // function playClip(){
   //    const {sound} = Audio.Sound.createAsync(`${audio}`)
   //    await
@@ -118,7 +118,7 @@ export default function Words({
   return (
     <>
       <View style={styles.container}>
-        <Button title={word.name} onPress={playSound} />
+        {audio ? (<Button title={word.name} onPress={playSound} />) :(<TextToSpeech key={word.name} word={word}/>)}
         {/* <Button
           style={styles.button}
           title="Word detail"
@@ -128,6 +128,7 @@ export default function Words({
             console.log(word);
           }}
         /> */}
+        
         {inFrame ? (
           <Button
             title="Remove from frame"

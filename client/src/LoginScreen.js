@@ -54,13 +54,13 @@ export default function LoginScreen({navigation, setSession}) {
             onChangeText={(text) => setPassword(text)}
           />
           <Button title="Submit" onPress={handleSubmit} />
-          {/* <Button
+          <Button
             style={styles.button}
             title="Signup"
             onPress={() => {
               navigation.navigate("Signup");
             }}
-          /> */}
+          />
         </View>
       </Formik>
     </>

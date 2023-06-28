@@ -173,6 +173,30 @@ class WordFrames(Resource):
     
 api.add_resource(WordFrames, '/wordframes')
 
+class WordFrameDeleteResource(Resource):
+    def delete(self, wordframe_id, word_id):
+        wordframe = Frame.query.get(wordframe_id)
+
+        if wordframe is None:
+            return {'message': 'Wordframe not found'}, 404
+
+        word = Word.query.get(word_id)
+
+        if word is None:
+            return {'message': 'Word not found'}, 404
+
+        if word not in wordframe.words:
+            return {'message': 'Word is not associated with the given wordframe'}, 400
+
+        wordframe.words.remove(word)
+        db.session.commit()
+
+        return {'message': 'Word removed from wordframe successfully'}, 200
+
+# Endpoint registration
+api.add_resource(WordFrameDeleteResource, '/wordframes/<int:wordframe_id>/words/<int:word_id>')
+
+
 class Frames(Resource):
     def get(self):
         try:

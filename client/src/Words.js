@@ -10,11 +10,25 @@ import {
   ImageBackground,
 } from "react-native";
 
-export default function Words({ word, audio, navigation, frame }) {
+export default function Words({
+  word,
+  audio,
+  navigation,
+  frame,
+  filteredArray,
+}) {
   const [sound, setSound] = useState();
+  const [inFrame, setInFrame] = useState();
+  console.log(filteredArray);
+  console.log(word.id);
+  // const hasMatch = filteredArray.includes(word.name);
+  const hasWord = Object.values(filteredArray).some(
+    (w) => w.name === word.name
+    
+  );
   
-  
-  console.log(word);
+  console.log(hasWord);
+  // console.log(word);
   // console.log(word.audio_url)
   // console.log('here')
 
@@ -39,7 +53,8 @@ export default function Words({ word, audio, navigation, frame }) {
     //   fetch("http://127.0.0.1:5555/words")
     // })
   }
-  React.useEffect(() => {
+
+  useEffect(() => {
     return sound
       ? () => {
           console.log("Unloading Sound");
@@ -55,7 +70,7 @@ export default function Words({ word, audio, navigation, frame }) {
       fetch("http://127.0.0.1:5555/wordframes")
         // change fetch addres to ip address of local network
         // 10.129.3.215
-  
+
         .then((r) => r.json())
         .then((data) => {
           console.log(data);
@@ -63,33 +78,50 @@ export default function Words({ word, audio, navigation, frame }) {
         });
     }, []);
   }
-  console.log(word.id)
-  console.log(frame.id)
-function handleAddToWordFrame () {
+  // console.log(word.id)
+  // console.log(frame.id)
+  function handleAddToWordFrame() {
     fetch("http://127.0.0.1:5555/wordframes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          word_id: [5],
-          frame_id: [1],
-        }),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        word_ids: [word.id],
+        frame_ids: [frame.id],
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        // setFrame(data);
       })
-        .then((resp) => resp.json())
-        .then((data) => {
-          console.log(data)
-          setFrame(data);
-        })
-        .catch(error => {
-          console.error(error)
-        })
+      .catch((error) => {
+        console.error(error);
+      });
+      
   }
+
+  function handleRemoveFromFrame() {
+    fetch(`http://127.0.0.1:5555/wordframes/${frame.id}/words/${word.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+      });
+      
+    
+  }
+
   return (
     <>
       <View style={styles.container}>
         <Button title={word.name} onPress={playSound} />
-        <Button
+        {/* <Button
           style={styles.button}
           title="Word detail"
           word={word}
@@ -97,16 +129,23 @@ function handleAddToWordFrame () {
             navigation.navigate(`WordDetails`, { word });
             console.log(word);
           }}
-        />
-        <Button
-          title="Add to frame"
-          onPress={() => {
-            {handleAddToWordFrame}
-            console.log(word.name);
-            console.log(word.id);
-            console.log(frame.id)
-          }}
-        />
+        /> */}
+        {inFrame ? (
+          <Button
+            title="Remove from frame"
+            onPress={() => {
+              handleRemoveFromFrame();
+              console.log("removed from frame");
+            }}
+          />
+        ) : (
+          <Button
+            title="Add to frame"
+            onPress={() => {
+              handleAddToWordFrame();
+            }}
+          />
+        )}
       </View>
     </>
   );

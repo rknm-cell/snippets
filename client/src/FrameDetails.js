@@ -48,17 +48,18 @@ export default function FrameDetails({ route }) {
 //   console.log(filteredFrames[0].name)
 //   console.log(filteredFrames?.words)
 //   console.log(words)
-// const filteredWords = wordFrames.map(wordFrame => wordFrame.words.filter(word => wordFrame.id == frame.id))
-//   console.log(filteredWords)
-//   const filteredArray = words.filter(word => filteredWords.some(wordGroup => wordGroup.includes(word.id)))
-//   console.log(filteredArray)
+const filteredWords = wordFrames.map(wordFrame => wordFrame.words.filter(word => wordFrame.id == frame.id))
+  console.log(filteredWords)
+  const filteredArray = words.filter(word => filteredWords.some(wordGroup => wordGroup.includes(word.id)))
+  console.log(filteredArray)
+  
   
   return (
     <View>
       <Text>{frame.name}</Text>
       <Text>{frame.description}</Text>
       {/* <WordContainerScreen frame={frame} words={filteredArray}/> */}
-      <WordContainerScreen frame={frame}/>
+      <WordContainerScreen filteredArray={filteredArray} frame={frame}/>
     </View>
   );
 }

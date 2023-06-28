@@ -8,42 +8,51 @@ import {
   Text,
   Alert,
   ImageBackground,
-  FlatList
+  FlatList,
 } from "react-native";
-import {UserContext} from './UserContext';
-import {useSelector, useDispatch} from 'react-redux';
-import { useGlobalState } from './GlobalState';
+import { UserContext } from "./UserContext";
+import { useSelector, useDispatch } from "react-redux";
+import { useGlobalState } from "./GlobalState";
 // import {setWords} from './redux/actions'
-export default function WordContainerScreen({navigation, frame}) {
-    // const words = useSelector(state=> state.userReducer)
-    const [words, setWords] = useGlobalState();
-    console.log(words)
-    // const [words, setWords] = useState([]);
-    useEffect(() => {
-        fetch("http://127.0.0.1:5555/words")
-          // change fetch addres to ip address of local network
-          // 10.129.3.215
-    
-          .then((r) => r.json())
-          .then((data) => {
-            // console.log(data);
-            setWords(data);
-          });
-      }, []);
+export default function WordContainerScreen({ navigation, frame, filteredArray }) {
+  // const words = useSelector(state=> state.userReducer)
+  const [words, setWords] = useGlobalState();
+  console.log(words);
+  // const [words, setWords] = useState([]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:5555/words")
+      // change fetch addres to ip address of local network
+      // 10.129.3.215
 
-// const renderItem = ({word}) => {<Words wordObj={word} />}
-function renderWords(){
+      .then((r) => r.json())
+      .then((data) => {
+        // console.log(data);
+        setWords(data);
+      });
+  }, []);
+
+  // const renderItem = ({word}) => {<Words wordObj={word} />}
+  function renderWords() {
     return words.map((word) => {
-        return (<Words key={word.id} word={word} name={word.name} audio={word.audio_url} frame={frame} navigation={navigation}/>)
-    })
-}
+      return (
+        <Words
+          key={word.id}
+          word={word}
+          name={word.name}
+          audio={word.audio_url}
+          frame={frame}
+          navigation={navigation}
+          filteredArray={filteredArray}
+        />
+      );
+    });
+  }
   return (
     <>
       <View style={styles.container}>
-      {/* <UserContext.Consumer> */}
+        {/* <UserContext.Consumer> */}
         {/* {words.map((word) => {return <Words word={word} key={word.name} description={word.description} audio_url={word.audio_url}/>})} */}
-        
-        
+
         {/* <FlatList
         word={words}
         renderItem={renderItem}
@@ -83,7 +92,7 @@ const styles = StyleSheet.create({
   background: {
     height: 1000,
     width: 1000,
-    
+
     justifyContent: "center",
     flex: 1,
   },

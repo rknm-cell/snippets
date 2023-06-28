@@ -38,6 +38,9 @@ console.log(words)
       title="Frames"
       onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
       <Button style={styles.button}
+      title="Edit Frames"
+      onPress={() => {navigation.navigate("FrameEditScreen")}}/>
+      <Button style={styles.button}
       title="Create a Frame"
       onPress={() => {navigation.navigate("FrameCreator")}}/>
       </ImageBackground>

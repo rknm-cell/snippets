@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     marginHorizontal: 16,
-    backgroundColor: "red",
+    
   },
   title: {
     textAlign: "center",
@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginVertical: 8,
-    width: 10,
+    width: 5,
   },
 });

@@ -43,6 +43,9 @@ console.log(words)
       <Button style={styles.button}
       title="Create a Frame"
       onPress={() => {navigation.navigate("FrameCreator")}}/>
+      <Button style={styles.button}
+      title="Create a button"
+      onPress={() => {navigation.navigate("TextToSpeechContainer")}}/>
       </ImageBackground>
     </View>
   );

@@ -28,6 +28,7 @@ import FrameCreator from "./FrameCreator";
 import WordFrames from "./wordFrames";
 import FrameDetails from "./FrameDetails";
 import FrameEditScreen from "./FrameEditScreen";
+import TextToSpeechContainer from "./TextToSpeechContainer";
 const Tab = createBottomTabNavigator();
 // const UserContext = createContext();
 const Stack = createNativeStackNavigator();
@@ -66,14 +67,19 @@ export default function App() {
     <GlobalStateProvider>
       <FramesContextProvider>
         <NavigationContainer>
-          <Tab.Navigator>
+          
             <Stack.Navigator>
               {/* <Stack.Screen name="Tabs" component={MyFooter} /> */}
-              <Tab.Screen
+              <Stack.Screen
                 name="Home"
                 component={HomeScreen}
                 initialParams={{ words }}
                 options={{ title: "Home" }}
+              />
+              <Stack.Screen 
+                name="TextToSpeechContainer"
+                component={TextToSpeechContainer}
+                options={{title: "TextToSpeechContainer"}}
               />
               <Stack.Screen
                 name="Words"
@@ -142,7 +148,7 @@ export default function App() {
                 options={{ title: "Word Frames" }}
               />
             </Stack.Navigator>
-          </Tab.Navigator>
+          
         </NavigationContainer>
       </FramesContextProvider>
     </GlobalStateProvider>

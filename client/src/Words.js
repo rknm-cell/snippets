@@ -39,6 +39,7 @@ export default function Words({
   //    return sound.unloadAsync()
   // }
   async function playSound() {
+    
     console.log("Loading Sound");
 
     const { sound } = await Audio.Sound.createAsync(require(`${audio}`));
@@ -47,13 +48,9 @@ export default function Words({
 
     console.log("Playing Sound");
     await sound.playAsync();
-
-    //patch to add a counter for everytime pressed
-    // useEffect(() => {
-    //   fetch("http://127.0.0.1:5555/words")
-    // })
+    
+    
   }
-
   useEffect(() => {
     return sound
       ? () => {
@@ -62,6 +59,7 @@ export default function Words({
         }
       : undefined;
   }, [sound]);
+
   //navigate to word details
   function handleWordClick() {
     console.log(word);

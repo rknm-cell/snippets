@@ -30,12 +30,11 @@ class Words(Resource):
         try:
             new_word = Word(
                 name=request.json['name'],
-                description=request.json['description'],
-                audio_url=request.json['audio_url']
+                description=request.json['description']
             )
             db.session.add(new_word)
             db.session.commit()
-            new_word_dict = new_word.to_dict(only=("id", "word_id", "frame_id", ))
+            new_word_dict = new_word.to_dict(only=("id", "name", "description", ))
             response = make_response(
                 new_word_dict, 201
             )

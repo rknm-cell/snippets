@@ -25,7 +25,8 @@ import { GlobalStateProvider, useGlobalState } from "./GlobalState";
 import FramesContextProvider from "./store/context/framesContext";
 import WordDetails from "./WordDetails";
 import FrameCreator from "./FrameCreator";
-import WordFrames from "./wordFrames";
+import WordCreator from "./WordCreator";
+// import WordFrames from "./wordFrames";
 import FrameDetails from "./FrameDetails";
 import FrameEditScreen from "./FrameEditScreen";
 import TextToSpeechContainer from "./TextToSpeechContainer";
@@ -143,9 +144,9 @@ export default function App() {
                 initialParams={{ itemId: words.id }}
               />
               <Stack.Screen
-                name="Word Frames"
-                component={WordFrames}
-                options={{ title: "Word Frames" }}
+                name="WordCreator"
+                component={WordCreator}
+                options={{ title: "Word Creator" }}
               />
             </Stack.Navigator>
           

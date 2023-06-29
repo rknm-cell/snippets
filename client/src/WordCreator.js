@@ -13,15 +13,15 @@ import WordContainerScreen from "./WordContainerScreen";
 import { Formik } from "formik";
 import { TextInput } from "react-native-web";
 // import { TextInput } from "react-native-web";
-export default function FrameCreator() {
+export default function WordCreator() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [frame, setFrame] = useState([])
+  const [word, setWord] = useState([])
   
-  const handleCreateFrame = async () => {
-    console.log("Created frame");
+  const handleCreateWord = () => {
+    console.log("Created Word");
     
-    const response = await fetch("http://127.0.0.1:5555/frames", {
+    fetch("http://127.0.0.1:5555/words", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,23 +29,24 @@ export default function FrameCreator() {
         body: JSON.stringify({
           name: name,
           description: description,
+          
         }),
       })
         .then((resp) => resp.json())
         .then((data) => {
           console.log(data)
-          setFrame(data);
+          setWord(data);
         });
-        navigation.navigate(`FrameContainerScreen`, {data})
+        navigation.navigate(`WordContainerScreen`,{})
     }
   
   return (
     <Formik>
       <View>
-        <Text>Create Frame</Text>
+        <Text>Create Word</Text>
         <TextInput
           style={styles.input}
-          placeholder="Frame Name"
+          placeholder="Word Name"
           onChangeText={(text) => setName(text)}
         />
         
@@ -54,7 +55,7 @@ export default function FrameCreator() {
           placeholder="Description"
           onChangeText={(text) => setDescription(text)}
         />
-        <Button title="Submit" onPress={handleCreateFrame} />
+        <Button title="Submit" onPress={handleCreateWord} />
       </View>
     </Formik>
   );

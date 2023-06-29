@@ -37,15 +37,15 @@ console.log(words)
       <Button style={styles.button}
       title="Frames"
       onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
-      <Button style={styles.button}
+      {/* <Button style={styles.button}
       title="Edit Frames"
-      onPress={() => {navigation.navigate("FrameEditScreen")}}/>
+      onPress={() => {navigation.navigate("FrameEditScreen")}}/> */}
       <Button style={styles.button}
       title="Create a Frame"
       onPress={() => {navigation.navigate("FrameCreator")}}/>
       <Button style={styles.button}
       title="Create a button"
-      onPress={() => {navigation.navigate("TextToSpeechContainer")}}/>
+      onPress={() => {navigation.navigate("WordCreator")}}/>
       </ImageBackground>
     </View>
   );

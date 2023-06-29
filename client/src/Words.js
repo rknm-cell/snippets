@@ -18,16 +18,19 @@ export default function Words({
   filteredArray,
 }) {
   const [sound, setSound] = useState();
-  const [inFrame, setInFrame] = useState();
+
+  const [buttons, setButtons] = useState(true);
+
   console.log(filteredArray);
   console.log(word.id);
+
   // const hasMatch = filteredArray.includes(word.name);
-  const hasWord = Object.values(filteredArray).some(
-    (w) => w.name === word.name
-    
-  );
-  
-  console.log(hasWord);
+
+  var hasWord = Object.values(filteredArray).some((w) => w.name === word.name);
+
+  //   console.log(hasWord)
+
+  // console.log(hasWord);
   // console.log(word);
   // console.log(word.audio_url)
   // console.log('here')
@@ -39,7 +42,6 @@ export default function Words({
   //    return sound.unloadAsync()
   // }
   async function playSound() {
-    
     console.log("Loading Sound");
 
     const { sound } = await Audio.Sound.createAsync(require(`${audio}`));
@@ -48,8 +50,6 @@ export default function Words({
 
     console.log("Playing Sound");
     await sound.playAsync();
-    
-    
   }
   useEffect(() => {
     return sound
@@ -76,9 +76,11 @@ export default function Words({
         });
     }, []);
   }
+
   // console.log(word.id)
   // console.log(frame.id)
   function handleAddToWordFrame() {
+    setButtons(!buttons)
     fetch("http://127.0.0.1:5555/wordframes", {
       method: "POST",
       headers: {
@@ -97,7 +99,6 @@ export default function Words({
       .catch((error) => {
         console.error(error);
       });
-      
   }
 
   function handleRemoveFromFrame() {
@@ -111,14 +112,16 @@ export default function Words({
       .then((data) => {
         console.log(data);
       });
-      
-    
   }
 
   return (
     <>
       <View style={styles.container}>
-        {audio ? (<Button title={word.name} onPress={playSound} />) :(<TextToSpeech key={word.name} word={word}/>)}
+        {audio ? (
+          <Button title={word.name} onPress={playSound} />
+        ) : (
+          <TextToSpeech key={word.name} word={word} />
+        )}
         {/* <Button
           style={styles.button}
           title="Word detail"
@@ -128,13 +131,20 @@ export default function Words({
             console.log(word);
           }}
         /> */}
-        
-        {inFrame ? (
+        <Button
+          title={hasWord ? "Remove from frame" : "Add to frame"}
+          onPress={() => {
+            
+            hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
+          }}
+        />
+        {/* {hasWord ? (
           <Button
             title="Remove from frame"
             onPress={() => {
               handleRemoveFromFrame();
               console.log("removed from frame");
+              hasWord = false
             }}
           />
         ) : (
@@ -142,9 +152,10 @@ export default function Words({
             title="Add to frame"
             onPress={() => {
               handleAddToWordFrame();
+              hasWord = true
             }}
           />
-        )}
+        )} */}
       </View>
     </>
   );

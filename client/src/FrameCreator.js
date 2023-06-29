@@ -18,10 +18,10 @@ export default function FrameCreator() {
   const [description, setDescription] = useState("");
   const [frame, setFrame] = useState([])
   
-  const handleCreateFrame = async () => {
+  const handleCreateFrame = () => {
     console.log("Created frame");
     
-    const response = await fetch("http://127.0.0.1:5555/frames", {
+    fetch("http://127.0.0.1:5555/frames", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,13 +36,13 @@ export default function FrameCreator() {
           console.log(data)
           setFrame(data);
         });
-        navigation.navigate(`FrameContainerScreen`, {data})
+        navigation.navigate(`FrameContainerScreen`)
     }
   
   return (
     <Formik>
-      <View>
-        <Text>Create Frame</Text>
+      <View style={styles.container}>
+        
         <TextInput
           style={styles.input}
           placeholder="Frame Name"
@@ -54,7 +54,7 @@ export default function FrameCreator() {
           placeholder="Description"
           onChangeText={(text) => setDescription(text)}
         />
-        <Button title="Submit" onPress={handleCreateFrame} />
+        <Button style={styles.button} title="Submit" onPress={handleCreateFrame} />
       </View>
     </Formik>
   );
@@ -68,8 +68,12 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+  container:{
+    flex: 1
   },
   input: {
     textAlign: "center",
@@ -77,9 +81,20 @@ const styles = StyleSheet.create({
     padding: 0,
     width: 300,
     height: 50,
-    justifyContent: "center",
+    
     alignSelf: "center",
     borderWidth: 2,
-    borderColor: "red",
+    borderColor: "blue",
+    borderRadius: 5,
+    
+    
+    marginVertical: 10
   },
+  button: {
+    flex: 1,
+    width: 10,
+    height: 25,
+    fontSize: 15
+    
+  }
 });

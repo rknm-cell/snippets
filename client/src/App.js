@@ -37,21 +37,21 @@ export default function App() {
   const [words, setWords] = useState([]);
   const [user, setUser] = useState(true);
   const [session, setSession] = useState(null);
-  const [login, setLogin] = useState(true);
+  // const [login, setLogin] = useState(true);
   const [word, setWord] = useState([]);
   console.log(user);
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:5555/words")
-      // change fetch addres to ip address of local network
-      // 10.129.3.215
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:5555/words")
+  //     // change fetch addres to ip address of local network
+  //     // 10.129.3.215
 
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data);
-        setWords(data);
-      });
-  }, []);
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setWords(data);
+  //     });
+  // }, []);
 
   // const footerConfig = {
   //   tabBarPosition: "bottom",
@@ -83,9 +83,9 @@ export default function App() {
                 options={{title: "TextToSpeechContainer"}}
               />
               <Stack.Screen
-                name="Words"
+                name="WordContainerScreen"
                 component={WordContainerScreen}
-                initialParams={{ words, setWords }}
+                // initialParams={{ words, setWords }}
                 options={{ title: "Words" }}
               >
                 {/* <WordContainerScreen words={words}/> */}
@@ -121,7 +121,7 @@ export default function App() {
               />
               <Stack.Screen
                 name="Login"
-                login={login}
+                
                 component={LoginScreen}
                 setSession={setSession}
                 options={{ title: "Login" }}

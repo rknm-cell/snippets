@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
 
-export default function FrameDetails({ route }) {
-  const { frame } = route.params;
+export default function FrameDetails({ route}) {
+  const { frame, edit } = route.params;
+  console.log(edit)
   const [words, setWords] = useState([]);
   const [wordFrames, setWordFrames] = useState([]);
   console.log(frame);
@@ -55,11 +56,26 @@ const filteredWords = wordFrames.map(wordFrame => wordFrame.words.filter(word =>
   
   
   return (
-    <View>
-      <Text>{frame.name}</Text>
-      <Text>{frame.description}</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{frame.name}</Text>
+      <Text style={styles.text}>{frame.description}</Text>
       {/* <WordContainerScreen frame={frame} words={filteredArray}/> */}
-      <WordContainerScreen filteredArray={filteredArray} frame={frame}/>
+      <WordContainerScreen edit={edit} filteredArray={filteredArray} frame={frame}/>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textName: {
+    fontSize: 25,
+    padding: 10,
+  },
+  textDescription: {
+    fontSize: 20,
+    padding: 10,
+  }
+})

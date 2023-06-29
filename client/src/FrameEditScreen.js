@@ -12,6 +12,7 @@ import WordContainerScreen from "./WordContainerScreen";
 import Frame from "./Frame";
 export default function FrameEditScreen({ route, navigation }) {
   const [frames, setFrames] = useState([]);
+  const [edit, setEdit] = useState(true);
   const { words } = route.params;
   useEffect(() => {
     fetch("http://127.0.0.1:5555/frames")
@@ -29,9 +30,10 @@ export default function FrameEditScreen({ route, navigation }) {
         <Button
         key={frame.name}
         title={frame.name}
+        
         style={styles.button}
         onPress={() => {
-          navigation.navigate(`FrameDetails`, { frame })
+          navigation.navigate(`FrameDetails`, { frame, edit })
           console.log(frame);
         }}
         />

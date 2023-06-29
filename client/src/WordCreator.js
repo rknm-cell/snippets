@@ -12,6 +12,7 @@ import {
 import WordContainerScreen from "./WordContainerScreen";
 import { Formik } from "formik";
 import { TextInput } from "react-native-web";
+import * as Speech from 'expo-speech';
 // import { TextInput } from "react-native-web";
 export default function WordCreator() {
   const [name, setName] = useState("");
@@ -39,22 +40,29 @@ export default function WordCreator() {
         });
         navigation.navigate(`WordContainerScreen`,{})
     }
-  
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const speakText = async () => {
+    setIsSpeaking(true);
+    await Speech.speak(description, { rate: 0.75 });
+    setIsSpeaking(false);
+  };
   return (
     <Formik>
       <View>
-        <Text>Create Word</Text>
+        
         <TextInput
           style={styles.input}
-          placeholder="Word Name"
+          placeholder="Name"
           onChangeText={(text) => setName(text)}
         />
         
         <TextInput
           style={styles.input}
-          placeholder="Description"
+          placeholder="Phrase"
           onChangeText={(text) => setDescription(text)}
         />
+        <Button title="Play phrase" onPress={speakText} disabled={isSpeaking}/>
         <Button title="Submit" onPress={handleCreateWord} />
       </View>
     </Formik>
@@ -69,8 +77,12 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
+    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+  },
+  container:{
+    flex: 1
   },
   input: {
     textAlign: "center",
@@ -78,9 +90,18 @@ const styles = StyleSheet.create({
     padding: 0,
     width: 300,
     height: 50,
-    justifyContent: "center",
+    
     alignSelf: "center",
     borderWidth: 2,
-    borderColor: "red",
+    borderColor: "blue",
+    borderRadius: 5,
+    
+    
+    marginVertical: 10
+  },
+  button: {
+    flex: 1,
+    marginVertical: 8,
+    width: 10,
   },
 });

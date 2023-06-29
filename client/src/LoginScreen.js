@@ -3,35 +3,40 @@ import { StyleSheet, View, Button, Text, TextInput } from "react-native";
 import { Formik } from "formik";
 
 export default function LoginScreen({navigation, setSession}) {
+  const [login, setLogin] = useState(true)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
+    setLogin(!login)
+    
     // Create an object with the username and password
     const data = {
       email: email,
       password: password,
     };
 
-    try {
+    
       // Make the API post request
-      const response = await fetch("http://127.0.0.1:5555/login", {
+      fetch("http://127.0.0.1:5555/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-
-      // Handle the response
-      if (response.ok) {
-        console.log("Post request successful!");
-      } else {
-        console.log("Error:", response.status);
-      }
-    } catch (error) {
-      console.log("Error:", error);
+      console.log(login)
+      {navigation.navigate("Home", {login})}
     }
-  };
+    //   // Handle the response
+    //   if (response.ok) {
+    //     console.log("Post request successful!");
+    //   } else {
+    //     console.log("Error:", response.status);
+    //   }
+    // } catch (error) {
+    //   console.log("Error:", error);
+    // }
+  
   // function handleClick() {
   //   setUser = true;
   // }

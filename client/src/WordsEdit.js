@@ -115,14 +115,7 @@ console.log
         console.log(data);
       });
   }
-function handleEditButtons(){
-  return edit ? <Button
-  title={hasWord ? "Remove from frame" : "Add to frame"}
-  onPress={() => {
-    
-    hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
-  }}/> : <></>
-}
+
   return (
     <>
       <View style={styles.container}>
@@ -131,14 +124,22 @@ function handleEditButtons(){
         ) : (
           <TextToSpeech key={word.name} word={word} />
         )}
-        
-        {/* {hasArray ? <Button
+        {/* <Button
+          style={styles.button}
+          title="Word detail"
+          word={word}
+          onPress={() => {
+            navigation.navigate(`WordDetails`, { word });
+            console.log(word);
+          }}
+        /> */}
+        {hasArray ? <Button
         title={hasWord ? "Remove from frame" : "Add to frame"}
         onPress={() => {
           
           hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
-        }}/> : <></>} */}
-        {handleEditButtons()}
+        }}/> : <></>}
+        
         {/* {hasWord ? (
           <Button
             title="Remove from frame"
@@ -175,7 +176,6 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginVertical: 8,
-    width: 30,
-    height: 30,
+    width: 10,
   },
 });

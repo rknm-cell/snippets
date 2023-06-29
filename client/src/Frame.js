@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
 import Words from "./Words";
-export default function Frame({ frame,words}) {
+export default function Frame({ frame, edit}) {
   // const {words} = route.params; 
   const [frameWords, setFrameWords] = useState([]);
   // const filteredWords = frameWords.filter(

@@ -9,7 +9,7 @@ const TextToSpeech = ({word}) => {
 
   const speakText = async () => {
     setIsSpeaking(true);
-    await Speech.speak(word.description, { rate: 0.75 });
+    await Speech.speak(word.description, { rate: 1 });
     setIsSpeaking(false);
   };
 

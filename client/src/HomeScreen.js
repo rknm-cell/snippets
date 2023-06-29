@@ -12,10 +12,11 @@ import {
 
 const homeBackground = { uri: "/assets/dddepth-316.jpg" };
 
-export default function HomeScreen({ navigation, user, login, route}) {
+export default function HomeScreen({ navigation, user, route}) {
 // const {user, setUser} = useContext(UserContext)
-const {words} = route.params; 
-console.log(words)
+const {login} = route.params; 
+console.log(login)
+// console.log(words)
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -31,15 +32,15 @@ console.log(words)
         title="Login"
         onPress={() => {navigation.navigate("Login")}}
       /> }
-      <Button style={styles.button}
+      {/* <Button style={styles.button}
       title="Words"
-      onPress={() => {navigation.navigate("Words"), {words}}}/>
+      onPress={() => {navigation.navigate("WordContainerScreen"), {words}}}/> */}
       <Button style={styles.button}
       title="Frames"
       onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
-      {/* <Button style={styles.button}
+      <Button style={styles.button}
       title="Edit Frames"
-      onPress={() => {navigation.navigate("FrameEditScreen")}}/> */}
+      onPress={() => {navigation.navigate("FrameEditScreen")}}/>
       <Button style={styles.button}
       title="Create a Frame"
       onPress={() => {navigation.navigate("FrameCreator")}}/>

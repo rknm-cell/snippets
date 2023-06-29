@@ -1,5 +1,6 @@
 import React, { Component, useContext, useEffect, useState } from "react";
 import Words from "./Words";
+import { Picker } from "@react-native-picker/picker";
 import {
   StyleSheet,
   Button,
@@ -9,15 +10,24 @@ import {
   Alert,
   ImageBackground,
   FlatList,
+  TextInput,
 } from "react-native";
 import { UserContext } from "./UserContext";
 import { useSelector, useDispatch } from "react-redux";
 import { useGlobalState } from "./GlobalState";
-// import {setWords} from './redux/actions'
-export default function WordContainerScreen({ navigation, frame, filteredArray }) {
+
+export default function WordContainerScreen({
+  edit,
+  navigation,
+  frame,
+  filteredArray,
+  route,
+}) {
   // const words = useSelector(state=> state.userReducer)
   const [words, setWords] = useGlobalState();
-  console.log(words);
+  const [sortValue, setSortValue] = useState("a.name > b.name");
+
+  console.log(edit);
   // const [words, setWords] = useState([]);
   useEffect(() => {
     fetch("http://127.0.0.1:5555/words")
@@ -26,30 +36,48 @@ export default function WordContainerScreen({ navigation, frame, filteredArray }
 
       .then((r) => r.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setWords(data);
       });
   }, []);
 
   // const renderItem = ({word}) => {<Words wordObj={word} />}
   function renderWords() {
-    return words.map((word) => {
-      return (
-        <Words
-          key={word.id}
-          word={word}
-          name={word.name}
-          audio={word.audio_url}
-          frame={frame}
-          navigation={navigation}
-          filteredArray={filteredArray}
-        />
-      );
-    });
+    return (edit ? [...words] : [...filteredArray])
+      .sort((a, b) => (eval(sortValue) ? 1 : -1))
+      .map((word) => {
+        return (
+          <Words
+            key={word.id}
+            word={word}
+            name={word.name}
+            audio={word.audio_url}
+            frame={frame}
+            navigation={navigation}
+            filteredArray={filteredArray}
+            edit={edit}
+          />
+        );
+      });
   }
+
+  // sorts words by alphabetical order
+
+  const wordsDescending = [...words].sort((b, a) => (b.name > a.name ? 1 : -1));
+  const wordsAscending = [...words].sort((a, b) => (a.name > b.name ? 1 : -1));
+
   return (
     <>
       <View style={styles.container}>
+        <Picker
+          style={styles.picker}
+          selectedValue={sortValue}
+          onValueChange={(itemValue, itemIndex) => setSortValue(itemValue)}
+        >
+          <Picker.Item label="A-Z" value="a.name > b.name" />
+          <Picker.Item label="Z-A" value="b.name > a.name" />
+        </Picker>
+        
         {/* <UserContext.Consumer> */}
         {/* {words.map((word) => {return <Words word={word} key={word.name} description={word.description} audio_url={word.audio_url}/>})} */}
 
@@ -57,6 +85,23 @@ export default function WordContainerScreen({ navigation, frame, filteredArray }
         word={words}
         renderItem={renderItem}
         keyExtractor={words => words.id}/> */}
+        {/* {[...words]
+          .sort((a, b) => (eval(sortValue) ? 1 : -1))
+          .map((word) => {
+            return (
+              <Words
+                style={styles.words}
+                key={word.id}
+                word={word}
+                name={word.name}
+                audio={word.audio_url}
+                frame={frame}
+                navigation={navigation}
+                filteredArray={filteredArray}
+                edit={edit}
+              />
+            );
+          })} */}
         {renderWords()}
         {/* </UserContext.Consumer> */}
       </View>
@@ -66,11 +111,16 @@ export default function WordContainerScreen({ navigation, frame, filteredArray }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    marginHorizontal: 16,
     
+    justifyContent: "space-between",
+    marginHorizontal: 16,
+    marginVertical: 5,
+    alignItems: "center",
   },
+  // words:{
+  //   flex: 1,
+  //   flexDirection: "row"
+  // },
   title: {
     textAlign: "center",
     marginVertical: 8,
@@ -99,6 +149,8 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginVertical: 8,
-    width: 5,
+    width: 10,
+    height: 40,
   },
+  picker: {},
 });

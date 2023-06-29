@@ -12,6 +12,7 @@ import WordContainerScreen from "./WordContainerScreen";
 import Frame from "./Frame";
 export default function FrameContainerScreen({ route, navigation }) {
   const [frames, setFrames] = useState([]);
+  const [edit, setEdit] = useState(false);
   const { words } = route.params;
   useEffect(() => {
     fetch("http://127.0.0.1:5555/frames")
@@ -31,7 +32,7 @@ export default function FrameContainerScreen({ route, navigation }) {
         title={frame.name}
         style={styles.button}
         onPress={() => {
-          navigation.navigate(`FrameDetails`, { frame })
+          navigation.navigate(`FrameDetails`, { frame, edit })
           console.log(frame);
         }}
         />
@@ -48,7 +49,7 @@ export default function FrameContainerScreen({ route, navigation }) {
     console.log(frames)
     
   return (
-  <View>
+  <View style={styles.container}>
     
     {renderFrames()}
     </View>);
@@ -56,12 +57,16 @@ export default function FrameContainerScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    alignItems: "center",
     marginHorizontal: 16,
   },
   button: {
-    flex: 1,
-    marginVertical: 8,
-    width: 10,
+    fontSize: 25,
+    marginVertical: 10,
+    width: 20,
+    height: 30,
+    
   },
 });

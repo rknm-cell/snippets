@@ -115,8 +115,11 @@ console.log
         console.log(data);
       });
   }
+  const handleButtonColor = () => {
+    hasWord ?  styles.button : styles.blue
+  }
 function handleEditButtons(){
-  return edit ? <Button
+  return edit ? <Button style={handleButtonColor}
   title={hasWord ? "Remove from frame" : "Add to frame"}
   onPress={() => {
     
@@ -177,5 +180,10 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     width: 30,
     height: 30,
+    backgroundColor: "red"
   },
+  blue: {},
+  red: {
+    backgroundColor: "red",
+  }
 });

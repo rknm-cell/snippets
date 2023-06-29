@@ -12,9 +12,11 @@ import {
 import { Formik } from "formik";
 export default function SignupScreen({ setSession }) {
   const [email, setEmail] = useState("");
+  const [login, setLogin] = useState(true)
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   function handleSubmit() {
+    setLogin(!login)
     fetch("http://127.0.0.1:5555/signup", {
       method: "POST",
       headers: {
@@ -25,10 +27,11 @@ export default function SignupScreen({ setSession }) {
         email,
         password,
       }),
+      
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-          onLogin(user);
+          // onLogin(user);
           fetch("http://127.0.0.1:5555/signup", {
             method: "POST",
             headers: {
@@ -38,14 +41,14 @@ export default function SignupScreen({ setSession }) {
               user_id: user.id,
             }),
           })
-            .then((r) => r.json())
-            .then((session) => {
-              setSession(session);
-              localStorage.setItem("shopping_session", session.id);
-            });
+          console.log(login)
+          {navigation.navigate("Home", {login})}
         });
       }
     });
+    console.log(login)
+    setLogin(!login)
+      navigation.navigate("Home", {})
   }
   return (
     <>

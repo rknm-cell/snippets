@@ -13,9 +13,9 @@ import {
 const homeBackground = { uri: "/assets/dddepth-316.jpg" };
 
 export default function HomeScreen({ navigation, user, route}) {
-// const {user, setUser} = useContext(UserContext)
-const {login} = route.params; 
-console.log(login)
+  // const login = user ? true : false
+  const {login} = route.params; 
+
 // console.log(words)
 
   return (
@@ -26,8 +26,18 @@ console.log(login)
         source={require("./assets/dddepth-316.jpg")}
       >
         <Text style={styles.title}>Home Screen</Text>
-        {login ? 
-        null : <Button
+        {login ? <View><Button style={styles.button}
+        title="Frames"
+        onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
+        <Button style={styles.button}
+        title="Edit Frames"
+        onPress={() => {navigation.navigate("FrameEditScreen")}}/>
+        <Button style={styles.button}
+        title="Create a Frame"
+        onPress={() => {navigation.navigate("FrameCreator")}}/>
+        <Button style={styles.button}
+        title="Create a button"
+        onPress={() => {navigation.navigate("WordCreator")}}/></View> : <Button
         style={styles.button}
         title="Login"
         onPress={() => {navigation.navigate("Login")}}
@@ -35,7 +45,7 @@ console.log(login)
       {/* <Button style={styles.button}
       title="Words"
       onPress={() => {navigation.navigate("WordContainerScreen"), {words}}}/> */}
-      <Button style={styles.button}
+      {/* <Button style={styles.button}
       title="Frames"
       onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
       <Button style={styles.button}
@@ -46,7 +56,7 @@ console.log(login)
       onPress={() => {navigation.navigate("FrameCreator")}}/>
       <Button style={styles.button}
       title="Create a button"
-      onPress={() => {navigation.navigate("WordCreator")}}/>
+      onPress={() => {navigation.navigate("WordCreator")}}/> */}
       </ImageBackground>
     </View>
   );
@@ -55,6 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    
     marginHorizontal: 16,
   },
   title: {
@@ -85,6 +96,8 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginVertical: 8,
-    width: 10,
+    width: 15,
+    
+    
   },
 });

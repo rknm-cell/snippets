@@ -36,7 +36,7 @@ export default function FrameCreator() {
           console.log(data)
           setFrame(data);
         });
-        navigation.navigate(`FrameContainerScreen`)
+        
     }
   
   return (

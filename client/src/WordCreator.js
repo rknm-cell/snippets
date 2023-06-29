@@ -38,7 +38,7 @@ export default function WordCreator() {
           console.log(data)
           setWord(data);
         });
-        navigation.navigate(`WordContainerScreen`,{})
+        
     }
   const [isSpeaking, setIsSpeaking] = useState(false);
 

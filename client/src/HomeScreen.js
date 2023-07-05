@@ -25,7 +25,7 @@ export default function HomeScreen({ navigation, user, route}) {
         resizeMode="cover"
         source={require("./assets/dddepth-316.jpg")}
       >
-        <Text style={styles.title}>Home Screen</Text>
+        <Text style={styles.title}>Snippets</Text>
         {login ? <View><Button style={styles.button}
         title="Frames"
         onPress={() => {navigation.navigate("FrameContainerScreen")}}/>

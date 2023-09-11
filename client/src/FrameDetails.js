@@ -9,6 +9,8 @@ import {
   ImageBackground,
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
+import { styles } from "./Styles";
+
 
 export default function FrameDetails({ route}) {
   const { frame, edit } = route.params;
@@ -64,18 +66,3 @@ const filteredWords = wordFrames.map(wordFrame => wordFrame.words.filter(word =>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  textName: {
-    fontSize: 25,
-    padding: 10,
-  },
-  textDescription: {
-    fontSize: 20,
-    padding: 10,
-  }
-})

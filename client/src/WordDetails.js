@@ -12,6 +12,7 @@ import {
     
   } from "react-native";
 import FramesContextProvider from "./store/context/framesContext";
+import { styles } from "./Styles";
 
 //set up word details
 
@@ -23,30 +24,30 @@ export default function WordDetails({ route, frame }){
     // const wordInFrame = frameWordCtx.ids.includes(word.id);
 
     console.log(word)
-    const soundPlay = require(`${word.audio_url}`);
-    async function playSound() {
-        console.log("Loading Sound");
+    // const soundPlay = require(`${word.audio_url}`);
+    // async function playSound() {
+    //     console.log("Loading Sound");
     
-        const { sound } = await Audio.Sound.createAsync(require(`${word.audio_url}`));
-        //   const { sound } = await Audio.Sound.createAsync({uri: `./assets/audio/oh-brother-this-guy-stinks.mp3`}, {shouldPlay: true});
-        setSound(sound);
+    //     const { sound } = await Audio.Sound.createAsync(require(`${word.audio_url}`));
+    //     //   const { sound } = await Audio.Sound.createAsync({uri: `./assets/audio/oh-brother-this-guy-stinks.mp3`}, {shouldPlay: true});
+    //     setSound(sound);
     
-        console.log("Playing Sound");
-        await sound.playAsync();
+    //     console.log("Playing Sound");
+    //     await sound.playAsync();
     
         //patch to add a counter for everytime pressed
         // useEffect(() => {
         //   fetch("http://127.0.0.1:5555/words")
         // })
-      }
-      React.useEffect(() => {
-        return sound
-          ? () => {
-              console.log("Unloading Sound");
-              sound.unloadAsync();
-            }
-          : undefined;
-      }, [sound]);
+      // }
+      // React.useEffect(() => {
+      //   return sound
+      //     ? () => {
+      //         console.log("Unloading Sound");
+      //         sound.unloadAsync();
+      //       }
+      //     : undefined;
+      // }, [sound]);
 console.log(word.id)
 console.log(frame.id)
 function handleAddToFrame () {
@@ -67,11 +68,7 @@ function handleAddToFrame () {
           console.log(data)
         //   setFrame(data);
         });
-    // if (wordInFrame) {
-    //     frameWordCtx.removeFromFrame(word.id)
-    // } else {
-    //     frameWordCtx.addToFrame(word.id)
-    // }
+   
 }
 
     return (

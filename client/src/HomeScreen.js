@@ -9,6 +9,7 @@ import {
   Alert,
   ImageBackground,
 } from "react-native";
+import { styles } from "./Styles";
 
 const homeBackground = { uri: "/assets/dddepth-316.jpg" };
 
@@ -25,8 +26,8 @@ export default function HomeScreen({ navigation, user, route}) {
         resizeMode="cover"
         source={require("./assets/dddepth-316.jpg")}
       >
-        <Text style={styles.title}>Home Screen</Text>
-        {login ? <View><Button style={styles.button}
+        <Text style={styles.title}>Melody Text To Speech</Text>
+        {/* {login ? <View><Button style={styles.button}
         title="Frames"
         onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
         <Button style={styles.button}
@@ -41,11 +42,11 @@ export default function HomeScreen({ navigation, user, route}) {
         style={styles.button}
         title="Login"
         onPress={() => {navigation.navigate("Login")}}
-      /> }
+      /> } */}
       {/* <Button style={styles.button}
       title="Words"
       onPress={() => {navigation.navigate("WordContainerScreen"), {words}}}/> */}
-      {/* <Button style={styles.button}
+      <Button style={styles.button}
       title="Frames"
       onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
       <Button style={styles.button}
@@ -56,48 +57,51 @@ export default function HomeScreen({ navigation, user, route}) {
       onPress={() => {navigation.navigate("FrameCreator")}}/>
       <Button style={styles.button}
       title="Create a button"
-      onPress={() => {navigation.navigate("WordCreator")}}/> */}
+      onPress={() => {navigation.navigate("WordCreator")}}/>
+      <Button style={styles.button}
+      title="Words"
+      onPress={() => {navigation.navigate("WordContainerScreen")}}/>
       </ImageBackground>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
     
-    marginHorizontal: 16,
-  },
-  title: {
-    textAlign: "center",
-    marginVertical: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 40,
-    padding: 25,
-    position: "relative",
-  },
-  fixToText: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "#737373",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  background: {
-    height: 1000,
-    width: 1000,
+//     marginHorizontal: 16,
+//   },
+//   title: {
+//     textAlign: "center",
+//     marginVertical: 8,
+//     justifyContent: "center",
+//     alignItems: "center",
+//     fontSize: 30,
+//     padding: 25,
+//     position: "relative",
+//   },
+//   fixToText: {
+//     flexDirection: "row",
+//     justifyContent: "space-between",
+//   },
+//   separator: {
+//     marginVertical: 8,
+//     borderBottomColor: "#737373",
+//     borderBottomWidth: StyleSheet.hairlineWidth,
+//   },
+//   background: {
+//     height: 1000,
+//     width: 1000,
     
-    justifyContent: "center",
-    flex: 1,
-  },
-  button: {
-    flex: 1,
-    marginVertical: 8,
-    width: 15,
+//     justifyContent: "center",
+//     flex: 1,
+//   },
+//   button: {
+//     flex: 1,
+//     marginVertical: 8,
+//     width: 15,
     
     
-  },
-});
+//   },
+// });

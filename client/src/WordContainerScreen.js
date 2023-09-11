@@ -14,8 +14,9 @@ import {
   ScrollView,
 } from "react-native";
 import { UserContext } from "./UserContext";
-import { useSelector, useDispatch } from "react-redux";
+
 import { useGlobalState } from "./GlobalState";
+import { styles } from "./Styles";
 
 export default function WordContainerScreen({
   edit,
@@ -27,8 +28,8 @@ export default function WordContainerScreen({
   // const words = useSelector(state=> state.userReducer)
   const [words, setWords] = useGlobalState();
   const [sortValue, setSortValue] = useState("a.name > b.name");
-console.log(filteredArray)
-  console.log(edit);
+// console.log(filteredArray)
+//   console.log(edit);
   // const [words, setWords] = useState([]);
   useEffect(() => {
     fetch("http://127.0.0.1:5555/words")
@@ -37,7 +38,7 @@ console.log(filteredArray)
 
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setWords(data);
       });
   }, []);
@@ -46,7 +47,7 @@ console.log(filteredArray)
   function renderWords() {
     console.log("rendering words")
     return (edit ? [...words] : [...filteredArray])
-      .sort((a, b) => (eval(sortValue) ? 1 : -1))
+      // .sort((a, b) => (eval(sortValue) ? 1 : -1))
       .map((word) => {
         return (
           <Words
@@ -65,22 +66,22 @@ console.log(filteredArray)
 
   // sorts words by alphabetical order
 
-  const wordsDescending = [...words].sort((b, a) => (b.name > a.name ? 1 : -1));
-  const wordsAscending = [...words].sort((a, b) => (a.name > b.name ? 1 : -1));
+  // const wordsDescending = [...words].sort((b, a) => (b.name > a.name ? 1 : -1));
+  // const wordsAscending = [...words].sort((a, b) => (a.name > b.name ? 1 : -1));
 
   return (
     <>
       <View style={styles.container}>
         
 
-        <Picker
+        {/* <Picker
           style={styles.picker}
           selectedValue={sortValue}
           onValueChange={(itemValue, itemIndex) => setSortValue(itemValue)}
           >
           <Picker.Item label="A-Z" value="a.name > b.name" />
           <Picker.Item label="Z-A" value="b.name > a.name" />
-        </Picker>
+        </Picker> */}
         <ScrollView contentContainerStyle={styles.contentContainer}>
         {/* <UserContext.Consumer> */}
         {/* {words.map((word) => {return <Words word={word} key={word.name} description={word.description} audio_url={word.audio_url}/>})} */}
@@ -114,61 +115,3 @@ console.log(filteredArray)
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    marginHorizontal: 16,
-    marginVertical: 5,
-    
-  },
-  contentContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 20,
-    width: 390,
-  },
-  // words:{
-  //   flex: 1,
-  //   flexDirection: "row"
-  // },
-  title: {
-    textAlign: "center",
-    marginVertical: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 40,
-    padding: 25,
-    position: "relative",
-  },
-  fixToText: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "#737373",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  background: {
-    height: 1000,
-    width: 1000,
-
-    justifyContent: "center",
-    flex: 1,
-  },
-  button: {
-    flex: 1,
-    marginVertical: 8,
-    width: 10,
-    height: 40,
-  },
-  picker: {
-    alignSelf: "top",
-    width: 100,
-    height: 30,
-    fontSize: 16
-  },
-});

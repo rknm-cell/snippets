@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
 import Frame from "./Frame";
+import { styles } from "./Styles";
+
 export default function FrameEditScreen({ route, navigation }) {
   const [frames, setFrames] = useState([]);
   const [edit, setEdit] = useState(true);
@@ -55,15 +57,15 @@ export default function FrameEditScreen({ route, navigation }) {
     {renderFrames()}
     </View>);
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    marginHorizontal: 16,
-  },
-  button: {
-    flex: 1,
-    marginVertical: 8,
-    width: 10,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: "center",
+//     marginHorizontal: 16,
+//   },
+//   button: {
+//     flex: 1,
+//     marginVertical: 8,
+//     width: 10,
+//   },
+// });

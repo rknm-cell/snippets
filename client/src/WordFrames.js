@@ -9,6 +9,7 @@ import {
   Alert,
   ImageBackground,
 } from "react-native";
+import { styles } from "./Styles";
 
 export default function WordFrames({ word, audio, navigation}) {
   const [sound, setSound] = useState();

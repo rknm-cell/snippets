@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
 import Frame from "./Frame";
+import { styles } from "./Styles";
+
 export default function FrameContainerScreen({ route, navigation }) {
   const [frames, setFrames] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -18,56 +20,33 @@ export default function FrameContainerScreen({ route, navigation }) {
     fetch("http://127.0.0.1:5555/frames")
       .then((r) => r.json())
       .then((data) => {
-        setFrames(data), 
-        console.log(data);
+        setFrames(data), console.log(data);
       });
   }, []);
   function renderFrames() {
     return frames.map((frame) => {
       return (
-      
-        
         <Button
-        key={frame.name}
-        title={frame.name}
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate(`FrameDetails`, { frame, edit })
-          console.log(frame);
-        }}
+          key={frame.name}
+          title={frame.name}
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate(`FrameDetails`, { frame, edit });
+            console.log(frame);
+          }}
         />
-        
+
         // <Frame
         //   key={frame.id}
         //   frame={frame}
         //   name={frame.name}
         //   description={frame.description}
         // />
-        );
-      });
-    }
-    console.log(frames)
-    
-  return (
-  <View style={styles.container}>
-    
-    {renderFrames()}
-    </View>);
+      );
+    });
+  }
+  console.log(frames);
+
+  return <View style={styles.container}>{renderFrames()}</View>;
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    marginHorizontal: 16,
-  },
-  button: {
-    fontSize: 25,
-    marginVertical: 10,
-    width: 20,
-    height: 30,
-    padding: 50,
-    
-  },
-});
+

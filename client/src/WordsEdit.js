@@ -9,6 +9,7 @@ import {
   Alert,
   ImageBackground,
 } from "react-native";
+import { styles } from "./Styles";
 import TextToSpeech from "./TextToSpeech";
 export default function Words({
   word,
@@ -163,19 +164,4 @@ console.log
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 16,
-    marginVertical: 5,
-    width: 100,
-  },
-  button: {
-    flex: 1,
-    marginVertical: 8,
-    width: 10,
-  },
-});
+

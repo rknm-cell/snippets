@@ -9,6 +9,7 @@ import {
   Alert,
   ImageBackground,
 } from "react-native";
+import { styles } from "./Styles";
 import TextToSpeech from "./TextToSpeech";
 export default function Words({
   word,
@@ -43,24 +44,24 @@ console.log
   //    await
   //    return sound.unloadAsync()
   // }
-  async function playSound() {
-    console.log("Loading Sound");
+  // async function playSound() {
+  //   console.log("Loading Sound");
 
-    const { sound } = await Audio.Sound.createAsync(require(`${audio}`));
-    //   const { sound } = await Audio.Sound.createAsync({uri: `./assets/audio/oh-brother-this-guy-stinks.mp3`}, {shouldPlay: true});
-    setSound(sound);
+  //   const { sound } = await Audio.Sound.createAsync(require(`${audio}`));
+  //   //   const { sound } = await Audio.Sound.createAsync({uri: `./assets/audio/oh-brother-this-guy-stinks.mp3`}, {shouldPlay: true});
+  //   setSound(sound);
 
-    console.log("Playing Sound");
-    await sound.playAsync();
-  }
-  useEffect(() => {
-    return sound
-      ? () => {
-          console.log("Unloading Sound");
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
+  //   console.log("Playing Sound");
+  //   await sound.playAsync();
+  // }
+  // useEffect(() => {
+  //   return sound
+  //     ? () => {
+  //         console.log("Unloading Sound");
+  //         sound.unloadAsync();
+  //       }
+  //     : undefined;
+  // }, [sound]);
 
   //navigate to word details
   function handleWordClick() {
@@ -129,12 +130,12 @@ function handleEditButtons(){
   return (
     <>
       <View style={styles.container}>
-        {audio ? (
+        {/* {audio ? (
           <Button title={word.name} onPress={playSound} />
         ) : (
           <TextToSpeech key={word.name} word={word} />
-        )}
-        
+        )} */}
+        <TextToSpeech key={word.name} word={word} />
         {/* {hasArray ? <Button
         title={hasWord ? "Remove from frame" : "Add to frame"}
         onPress={() => {
@@ -165,25 +166,4 @@ function handleEditButtons(){
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 16,
-    marginVertical: 5,
-    width: 100,
-  },
-  button: {
-    flex: 1,
-    marginVertical: 8,
-    width: 30,
-    height: 30,
-    backgroundColor: "red"
-  },
-  blue: {},
-  red: {
-    backgroundColor: "red",
-  }
-});
+

@@ -86,10 +86,9 @@ export default function App() {
               <Stack.Screen
                 name="WordContainerScreen"
                 component={WordContainerScreen}
-                // initialParams={{ words, setWords }}
                 options={{ title: "Words" }}
               >
-                {/* <WordContainerScreen words={words}/> */}
+                
               </Stack.Screen>
               <Stack.Screen
                 name="WordDetails"

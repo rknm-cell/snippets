@@ -21,8 +21,7 @@ export default function FrameDetails({ route}) {
   // const filteredWords
   useEffect(() => {
     fetch("http://127.0.0.1:5555/words")
-      // change fetch addres to ip address of local network
-      // 10.129.3.215
+      
 
       .then((r) => r.json())
       .then((data) => {
@@ -33,8 +32,6 @@ export default function FrameDetails({ route}) {
 
   useEffect(() => {
     fetch(`http://127.0.0.1:5555/wordframes`)
-      // change fetch addres to ip address of local network
-      // 10.129.3.215
 
       .then((r) => r.json())
       .then((data) => {
@@ -43,14 +40,11 @@ export default function FrameDetails({ route}) {
         
       });
   }, []);
-  //   const filteredWords = words.filter((word) => {frames.words.includes(word.id)})
-//   console.log(wordFrames);
+ 
   console.log(frame);
   const filteredFrames = wordFrames.filter(wordFrame => wordFrame.id === frame.id);
   console.log(filteredFrames)
-//   console.log(filteredFrames[0].name)
-//   console.log(filteredFrames?.words)
-//   console.log(words)
+
 const filteredWords = wordFrames.map(wordFrame => wordFrame.words.filter(word => wordFrame.id == frame.id))
   console.log(filteredWords)
   const filteredArray = words.filter(word => filteredWords.some(wordGroup => wordGroup.includes(word.id)))

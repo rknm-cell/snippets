@@ -32,27 +32,13 @@ const TextToSpeech = ({ word }) => {
     setIsSpeaking(false);
   };
 
-  //   const saveAudio = async () => {
-  //     const { uri } = await Speech.synthesizeSpeech({ text });
-  //     const fileUri = FileSystem.documentDirectory + 'text_to_speech_audio.wav';
-  //     await FileSystem.moveAsync({ from: uri, to: fileUri });
-  //     alert(`Audio saved to ${fileUri}`);
-  //   };
+  
 
   return (
     <View>
-      {/* <Text>Enter the text to convert:</Text>
-      <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-        onChangeText={setText}
-        value={text}
-      /> */}
+     
       <Button title={word.name} onPress={speakText} disabled={isSpeaking} />
-      {/* <Button
-        title="Save Audio"
-        onPress={saveAudio}
-        disabled={isSpeaking || text === ''}
-      /> */}
+      
     </View>
   );
 };

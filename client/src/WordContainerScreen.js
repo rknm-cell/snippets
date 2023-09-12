@@ -38,7 +38,6 @@ export default function WordContainerScreen({
 
       .then((r) => r.json())
       .then((data) => {
-        // console.log(data);
         setWords(data);
       });
   }, []);

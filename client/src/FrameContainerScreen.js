@@ -8,8 +8,7 @@ import {
   Alert,
   ImageBackground,
 } from "react-native";
-import WordContainerScreen from "./WordContainerScreen";
-import Frame from "./Frame";
+import Logo from './assets/orange_noise.svg'
 import { styles } from "./Styles";
 
 export default function FrameContainerScreen({ route, navigation }) {
@@ -35,18 +34,20 @@ export default function FrameContainerScreen({ route, navigation }) {
             console.log(frame);
           }}
         />
-
-        // <Frame
-        //   key={frame.id}
-        //   frame={frame}
-        //   name={frame.name}
-        //   description={frame.description}
-        // />
       );
     });
   }
   console.log(frames);
 
-  return <View style={styles.container}>{renderFrames()}</View>;
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <ImageBackground
+        style={styles.background}
+        resizeMode="cover"
+        source={require("./assets/dddepth-290.jpg")}
+      >{renderFrames()}
+      
+      </ImageBackground>
+    </View>
+  );
 }
-

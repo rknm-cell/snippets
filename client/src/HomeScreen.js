@@ -26,26 +26,8 @@ export default function HomeScreen({ navigation, user, route}) {
         resizeMode="cover"
         source={require("./assets/dddepth-316.jpg")}
       >
-        <Text style={styles.title}>Melody Text To Speech</Text>
-        {/* {login ? <View><Button style={styles.button}
-        title="Frames"
-        onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
-        <Button style={styles.button}
-        title="Edit Frames"
-        onPress={() => {navigation.navigate("FrameEditScreen")}}/>
-        <Button style={styles.button}
-        title="Create a Frame"
-        onPress={() => {navigation.navigate("FrameCreator")}}/>
-        <Button style={styles.button}
-        title="Create a button"
-        onPress={() => {navigation.navigate("WordCreator")}}/></View> : <Button
-        style={styles.button}
-        title="Login"
-        onPress={() => {navigation.navigate("Login")}}
-      /> } */}
-      {/* <Button style={styles.button}
-      title="Words"
-      onPress={() => {navigation.navigate("WordContainerScreen"), {words}}}/> */}
+        <Text style={styles.title}>Melody Talker</Text>
+        
       <Button style={styles.button}
       title="Frames"
       onPress={() => {navigation.navigate("FrameContainerScreen")}}/>

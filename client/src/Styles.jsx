@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 8,
     width: 30,
-    height: 30,
+    height: 50,
     backgroundColor: "red",
   },
   blue: {

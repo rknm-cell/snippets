@@ -17,22 +17,24 @@ export default function Words({
   navigation,
   frame,
   filteredArray,
-  edit
+  edit,
 }) {
   const [sound, setSound] = useState();
 
   const [buttons, setButtons] = useState(true);
 
-  console.log(edit)
+  console.log(edit);
   console.log(word.id);
 
   // const hasMatch = filteredArray.includes(word.name);
-const hasArray = filteredArray ? true : false
-const hasWord = filteredArray ? Object.values(filteredArray).some((w) => w.name === word.name) : null
-console.log(hasArray)
+  const hasArray = filteredArray ? true : false;
+  const hasWord = filteredArray
+    ? Object.values(filteredArray).some((w) => w.name === word.name)
+    : null;
+  console.log(hasArray);
   //   console.log(hasWord)
 
-console.log 
+  console.log;
   // console.log(hasWord);
   // console.log(word);
   // console.log(word.audio_url)
@@ -83,7 +85,7 @@ console.log
   // console.log(word.id)
   // console.log(frame.id)
   function handleAddToWordFrame() {
-    setButtons(!buttons)
+    setButtons(!buttons);
     fetch("http://127.0.0.1:5555/wordframes", {
       method: "POST",
       headers: {
@@ -117,53 +119,28 @@ console.log
       });
   }
   const handleButtonColor = () => {
-    hasWord ?  styles.button : styles.blue
+    hasWord ? styles.button : styles.blue;
+  };
+  function handleEditButtons() {
+    return edit ? (
+      <Button
+        style={handleButtonColor}
+        title={hasWord ? "Remove from frame" : "Add to frame"}
+        onPress={() => {
+          hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
+        }}
+      />
+    ) : (
+      <></>
+    );
   }
-function handleEditButtons(){
-  return edit ? <Button style={handleButtonColor}
-  title={hasWord ? "Remove from frame" : "Add to frame"}
-  onPress={() => {
-    
-    hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
-  }}/> : <></>
-}
   return (
     <>
       <View style={styles.container}>
-        {/* {audio ? (
-          <Button title={word.name} onPress={playSound} />
-        ) : (
-          <TextToSpeech key={word.name} word={word} />
-        )} */}
         <TextToSpeech key={word.name} word={word} />
-        {/* {hasArray ? <Button
-        title={hasWord ? "Remove from frame" : "Add to frame"}
-        onPress={() => {
-          
-          hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
-        }}/> : <></>} */}
+
         {handleEditButtons()}
-        {/* {hasWord ? (
-          <Button
-            title="Remove from frame"
-            onPress={() => {
-              handleRemoveFromFrame();
-              console.log("removed from frame");
-              hasWord = false
-            }}
-          />
-        ) : (
-          <Button
-            title="Add to frame"
-            onPress={() => {
-              handleAddToWordFrame();
-              hasWord = true
-            }}
-          />
-        )} */}
       </View>
     </>
   );
 }
-
-

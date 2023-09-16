@@ -20,25 +20,18 @@ const TextToSpeech = ({ word }) => {
       }
 
       setInterval(() => {
-        Speech.speak(word.description, {rate: 0.8});
+        Speech.speak(word.description, { rate: 0.8 });
       }, 1000);
     };
-    
 
-    
-    
     setIsSpeaking(true);
     await Speech.speak(word.description, { rate: 0.8 });
     setIsSpeaking(false);
   };
 
-  
-
   return (
     <View>
-     
       <Button title={word.name} onPress={speakText} disabled={isSpeaking} />
-      
     </View>
   );
 };

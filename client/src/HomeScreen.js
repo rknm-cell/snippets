@@ -40,9 +40,7 @@ export default function HomeScreen({ navigation, user, route}) {
       <Button style={styles.button}
       title="Create a button"
       onPress={() => {navigation.navigate("WordCreator")}}/>
-      {/* <Button style={styles.button}
-      title="Words"
-      onPress={() => {navigation.navigate("WordContainerScreen")}}/> */}
+      
       </ImageBackground>
     </View>
   );

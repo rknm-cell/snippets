@@ -125,7 +125,7 @@ export default function Words({
     return edit ? (
       <Button
         style={handleButtonColor}
-        title={hasWord ? "Remove from frame" : "Add to frame"}
+        title={hasWord ? "unfavorite" : "favorite"}
         onPress={() => {
           hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
         }}

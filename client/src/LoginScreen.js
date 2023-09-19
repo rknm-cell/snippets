@@ -27,19 +27,7 @@ export default function LoginScreen({navigation, setSession}) {
       console.log(login)
       {navigation.navigate("Home", {login})}
     }
-    //   // Handle the response
-    //   if (response.ok) {
-    //     console.log("Post request successful!");
-    //   } else {
-    //     console.log("Error:", response.status);
-    //   }
-    // } catch (error) {
-    //   console.log("Error:", error);
-    // }
-  
-  // function handleClick() {
-  //   setUser = true;
-  // }
+    
   return (
     <>
       <Formik>

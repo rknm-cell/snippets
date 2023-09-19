@@ -78,8 +78,7 @@ function handleAddToFrame () {
             
         <Button title={`Play ${word.name}`} onPress={playSound} />
             <Button title={`Add to frame`} onPress={handleAddToFrame}/>
-            {/* <Button title={word.name} onPress={playSound}/>
-            <Button title="add to frame" onPress={handleAddToFrame}/> */}
+          
         </View>
 
     )

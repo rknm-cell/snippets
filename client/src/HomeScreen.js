@@ -4,9 +4,7 @@ import {
   StyleSheet,
   Button,
   View,
-  SafeAreaView,
   Text,
-  Alert,
   ImageBackground,
 } from "react-native";
 import { styles } from "./Styles";

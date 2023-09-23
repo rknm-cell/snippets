@@ -73,14 +73,7 @@ export default function WordContainerScreen({
       <View style={styles.container}>
         
 
-        {/* <Picker
-          style={styles.picker}
-          selectedValue={sortValue}
-          onValueChange={(itemValue, itemIndex) => setSortValue(itemValue)}
-          >
-          <Picker.Item label="A-Z" value="a.name > b.name" />
-          <Picker.Item label="Z-A" value="b.name > a.name" />
-        </Picker> */}
+        
         <ScrollView contentContainerStyle={styles.contentContainer}>
       
        

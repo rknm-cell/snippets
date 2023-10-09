@@ -1,13 +1,9 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Button,
   View,
-  SafeAreaView,
-  Text,
-  Alert,
   TextInput,
-  ImageBackground,
 } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
 import { Formik } from "formik";
@@ -15,7 +11,6 @@ import * as Speech from "expo-speech";
 // import { styles } from "./Styles";
 
 export default function WordCreator() {
-  const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [word, setWord] = useState([]);
 

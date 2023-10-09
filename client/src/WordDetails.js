@@ -66,7 +66,7 @@ function handleAddToFrame () {
         .then((resp) => resp.json())
         .then((data) => {
           console.log(data)
-        //   setFrame(data);
+          setFrame(data);
         });
    
 }
@@ -78,8 +78,7 @@ function handleAddToFrame () {
             
         <Button title={`Play ${word.name}`} onPress={playSound} />
             <Button title={`Add to frame`} onPress={handleAddToFrame}/>
-            {/* <Button title={word.name} onPress={playSound}/>
-            <Button title="add to frame" onPress={handleAddToFrame}/> */}
+          
         </View>
 
     )

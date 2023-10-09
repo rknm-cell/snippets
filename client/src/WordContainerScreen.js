@@ -13,7 +13,6 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import { UserContext } from "./UserContext";
 
 import { useGlobalState } from "./GlobalState";
 import { styles } from "./Styles";
@@ -73,41 +72,12 @@ export default function WordContainerScreen({
       <View style={styles.container}>
         
 
-        {/* <Picker
-          style={styles.picker}
-          selectedValue={sortValue}
-          onValueChange={(itemValue, itemIndex) => setSortValue(itemValue)}
-          >
-          <Picker.Item label="A-Z" value="a.name > b.name" />
-          <Picker.Item label="Z-A" value="b.name > a.name" />
-        </Picker> */}
+        
         <ScrollView contentContainerStyle={styles.contentContainer}>
-        {/* <UserContext.Consumer> */}
-        {/* {words.map((word) => {return <Words word={word} key={word.name} description={word.description} audio_url={word.audio_url}/>})} */}
-
-        {/* <FlatList
-        word={words}
-        renderItem={renderItem}
-      keyExtractor={words => words.id}/> */}
-        {/* {[...words]
-          .sort((a, b) => (eval(sortValue) ? 1 : -1))
-          .map((word) => {
-            return (
-              <Words
-              style={styles.words}
-              key={word.id}
-              word={word}
-              name={word.name}
-              audio={word.audio_url}
-              frame={frame}
-              navigation={navigation}
-              filteredArray={filteredArray}
-              edit={edit}
-              />
-              );
-            })} */}
+      
+       
         {renderWords()}
-        {/* </UserContext.Consumer> */}
+       
             </ScrollView>
       </View>
     </>

@@ -116,15 +116,7 @@ function handleWord(){
         ) : (
           <TextToSpeech key={word.name} word={word} />
         )}
-        {/* <Button
-          style={styles.button}
-          title="Word detail"
-          word={word}
-          onPress={() => {
-            navigation.navigate(`WordDetails`, { word });
-            console.log(word);
-          }}
-        /> */}
+       
         {hasArray ? <Button
         title={hasWord ? "Remove from frame" : "Add to frame"}
         

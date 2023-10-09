@@ -17,7 +17,7 @@ import SignupScreen from "./SignupScreen";
 import WordContainerScreen from "./WordContainerScreen";
 import FrameContainerScreen from "./FrameContainerScreen";
 import { createContext, useContext, useEffect, useState } from "react";
-import AppStateProvider from "./AppStateContext";
+// import AppStateProvider from "./AppStateContext";
 import { UserContext } from "./UserContext";
 import { Provider } from "react-redux";
 import { Store } from "./redux/store";

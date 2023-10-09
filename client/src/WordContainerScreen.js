@@ -13,7 +13,6 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import { UserContext } from "./UserContext";
 
 import { useGlobalState } from "./GlobalState";
 import { styles } from "./Styles";

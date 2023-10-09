@@ -6,6 +6,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     marginHorizontal: 16,
   },
+  words: {
+    flexDirection: "row",
+    alignContent: "center",
+    justifyContent: "center"
+  },
+  wordscontainer:{
+    flex: 1,
+    justifyContent: "center"
+  },
   button: {
     flex: 1,
     marginVertical: 8,

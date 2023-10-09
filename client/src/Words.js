@@ -125,7 +125,7 @@ export default function Words({
     return edit ? (
       <Button
         style={handleButtonColor}
-        title={hasWord ? "unfavorite" : "favorite"}
+        title={hasWord ? "✭" : "✩"}
         onPress={() => {
           hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
         }}
@@ -136,7 +136,7 @@ export default function Words({
   }
   return (
     <>
-      <View style={styles.container}>
+      <View style={styles.words}>
         <TextToSpeech key={word.name} word={word} />
 
         {handleEditButtons()}

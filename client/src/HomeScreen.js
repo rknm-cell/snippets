@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation, user, route}) {
         resizeMode="cover"
         source={require("./assets/dddepth-316.jpg")}
       >
-        <Text style={styles.title}>Melody Talker</Text>
+        <Text style={styles.melodytitle}>Melody Talker</Text>
         
       <Button style={styles.homescreenbutton}
       title="Frames"

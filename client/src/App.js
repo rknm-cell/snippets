@@ -51,7 +51,7 @@ export default function App() {
               name="Home"
               component={HomeScreen}
               initialParams={{ words }}
-              options={{ title: "Home" }}
+              options={{ title: "Melody Talker" }}
             />
             <Stack.Screen
               name="TextToSpeechContainer"

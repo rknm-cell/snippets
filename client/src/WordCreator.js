@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Button,
-  View,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Button, View, TextInput, ImageBackground } from "react-native";
 import WordContainerScreen from "./WordContainerScreen";
 import { Formik } from "formik";
 import * as Speech from "expo-speech";
-// import { styles } from "./Styles";
+import { styles } from "./Styles";
 
 export default function WordCreator() {
   const [description, setDescription] = useState("");
@@ -42,50 +37,66 @@ export default function WordCreator() {
   };
   return (
     <Formik>
-      <View>
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <ImageBackground
+        style={styles.background}
+        resizeMode="cover"
+        source={require("./assets/dddepth-202.jpg")}>
         <TextInput
-          style={styles.input}
-          placeholder="Phrase"
+          style={styles.ttsinput}
+          placeholder="Text to speech"
           onChangeText={(text) => setDescription(text)}
         />
-        <Button title="Play phrase" onPress={speakText} disabled={isSpeaking} />
-        <Button title="Submit" onPress={handleCreateWord} />
+        
+        <Button
+          title="Play phrase"
+          style={styles.ttsplaybutton}
+          onPress={speakText}
+          disabled={isSpeaking}
+        />
+        <Button
+          title="Add word"
+          style={styles.ttsbutton}
+          onPress={handleCreateWord}
+        />
+        
+        </ImageBackground>
       </View>
     </Formik>
   );
 }
 
-const styles = StyleSheet.create({
-  header: {
-    height: 80,
-    paddingTop: 38,
-    backgroundColor: "coral",
-    borderRadius: 25,
-  },
-  view: {
-    flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  container: {
-    flex: 1,
-  },
-  input: {
-    textAlign: "center",
-    fontSize: 25,
-    padding: 0,
-    width: 300,
-    height: 50,
-    alignSelf: "center",
-    borderWidth: 2,
-    borderColor: "blue",
-    borderRadius: 5,
-    marginVertical: 10,
-  },
-  button: {
-    flex: 1,
-    marginVertical: 8,
-    width: 10,
-  },
-});
+// const styles = StyleSheet.create({
+//   header: {
+//     height: 80,
+//     paddingTop: 38,
+//     backgroundColor: "coral",
+//     borderRadius: 25,
+//   },
+//   view: {
+//     flex: 1,
+//     flexDirection: "column",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   container: {
+//     flex: 1,
+//   },
+//   input: {
+//     textAlign: "center",
+//     fontSize: 25,
+//     padding: 0,
+//     width: 300,
+//     height: 50,
+//     alignSelf: "center",
+//     borderWidth: 2,
+//     borderColor: "blue",
+//     borderRadius: 5,
+//     marginVertical: 10,
+//   },
+//   button: {
+//     flex: 1,
+//     marginVertical: 8,
+//     width: 10,
+//   },
+// });

@@ -28,6 +28,19 @@ export const styles = StyleSheet.create({
   ttsbutton: {
 
   },
+  ttsinput: {
+    textAlign: "center",
+    fontSize: 25,
+    padding: 0,
+    width: 300,
+    height: 50,
+    alignSelf: "center",
+    
+   
+    borderRadius: 5,
+    marginVertical: 10,
+
+  },
   framesbutton: {
 
   },
@@ -100,6 +113,14 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     padding: 25,
     position: "relative",
+  },
+  melodytitle: {
+    textAlign: "center",
+    padding: 20,
+    fontSize: 30,
+    fontWeight: "bold",
+    // justifyContent: "center",
+    // alignSelf: "center",
   },
   fixToText: {
     flexDirection: "row",

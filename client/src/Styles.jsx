@@ -15,10 +15,24 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center"
   },
+  frameCreator: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   button: {
     flex: 1,
     marginVertical: 8,
     width: 10,
+  },
+  ttsbutton: {
+
+  },
+  framesbutton: {
+
+  },
+  homescreenbutton: {
+
   },
   header: {
     height: 80,
@@ -43,12 +57,34 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "red",
   },
+  frameinput:{
+    height: 50,
+    fontSize: 20,
+
+  },
+  framename:{
+    justifyContent: "center",
+    alignSelf: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    padding: 10,
+
+  },
+  framedescription:{
+    justifyContent: "center",
+    alignSelf: "center",
+    padding: 5,
+  },
   button: {
     flex: 1,
     marginVertical: 8,
     width: 30,
     height: 50,
     backgroundColor: "red",
+  },
+  deleteframebutton: 
+  {
+    padding: 20,
   },
   blue: {
     
@@ -91,4 +127,5 @@ export const styles = StyleSheet.create({
     height: 30,
     fontSize: 16,
   },
+  
 });

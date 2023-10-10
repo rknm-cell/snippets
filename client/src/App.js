@@ -40,7 +40,7 @@ export default function App() {
   const [session, setSession] = useState(null);
   // const [login, setLogin] = useState(true);
   const [word, setWord] = useState([]);
-  console.log(user);
+  // console.log(user);
 
   return (
     <GlobalStateProvider>
@@ -66,7 +66,7 @@ export default function App() {
             <Stack.Screen
               name="WordDetails"
               component={WordDetails}
-              options={{ title: "WordDetails" }}
+              options={{ title: "Word" }}
             />
             <Stack.Screen
               name="FrameContainerScreen"
@@ -78,7 +78,7 @@ export default function App() {
               name="FrameEditScreen"
               component={FrameEditScreen}
               initialParams={{ words }}
-              options={{ title: "FrameEditScreen" }}
+              options={{ title: "Edit Frame" }}
             />
             <Stack.Screen
               name="FrameDetails"
@@ -90,7 +90,7 @@ export default function App() {
               name="FrameCreator"
               component={FrameCreator}
               initialParams={{ words }}
-              options={{ title: "FrameCreator" }}
+              options={{ title: "Create a Frame" }}
             />
             <Stack.Screen
               name="Login"

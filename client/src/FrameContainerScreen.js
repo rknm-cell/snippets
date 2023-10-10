@@ -19,7 +19,7 @@ export default function FrameContainerScreen({ route, navigation }) {
     fetch("http://127.0.0.1:5555/frames")
       .then((r) => r.json())
       .then((data) => {
-        setFrames(data), console.log(data);
+        setFrames(data);
       });
   }, []);
   function renderFrames() {
@@ -34,6 +34,7 @@ export default function FrameContainerScreen({ route, navigation }) {
             console.log(frame);
           }}
         />
+        
       );
     });
   }
@@ -46,7 +47,12 @@ export default function FrameContainerScreen({ route, navigation }) {
         resizeMode="cover"
         source={require("./assets/dddepth-290.jpg")}
       >{renderFrames()}
-      
+      <Button style={styles.framesbutton}
+      title="Edit Frames"
+      onPress={() => {navigation.navigate("FrameEditScreen")}}/>
+       <Button style={styles.framesbutton}
+      title="Create a Frame"
+      onPress={() => {navigation.navigate("FrameCreator")}}/>
       </ImageBackground>
     </View>
   );

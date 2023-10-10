@@ -23,67 +23,30 @@ export default function Words({
 
   const [buttons, setButtons] = useState(true);
 
-  console.log(edit);
-  console.log(word.id);
+  
 
   // const hasMatch = filteredArray.includes(word.name);
   const hasArray = filteredArray ? true : false;
   const hasWord = filteredArray
     ? Object.values(filteredArray).some((w) => w.name === word.name)
     : null;
-  console.log(hasArray);
-  //   console.log(hasWord)
-
-  console.log;
-  // console.log(hasWord);
-  // console.log(word);
-  // console.log(word.audio_url)
-  // console.log('here')
-
-  // const soundPlay = require(`${audio}`);
-  // function playClip(){
-  //    const {sound} = Audio.Sound.createAsync(`${audio}`)
-  //    await
-  //    return sound.unloadAsync()
-  // }
-  // async function playSound() {
-  //   console.log("Loading Sound");
-
-  //   const { sound } = await Audio.Sound.createAsync(require(`${audio}`));
-  //   //   const { sound } = await Audio.Sound.createAsync({uri: `./assets/audio/oh-brother-this-guy-stinks.mp3`}, {shouldPlay: true});
-  //   setSound(sound);
-
-  //   console.log("Playing Sound");
-  //   await sound.playAsync();
-  // }
-  // useEffect(() => {
-  //   return sound
-  //     ? () => {
-  //         console.log("Unloading Sound");
-  //         sound.unloadAsync();
-  //       }
-  //     : undefined;
-  // }, [sound]);
-
-  //navigate to word details
+  
+  
   function handleWordClick() {
-    console.log(word);
+    
     navigate(`/words/${word.id}`, state.id);
     useEffect(() => {
       fetch("http://127.0.0.1:5555/wordframes")
-        // change fetch addres to ip address of local network
-        // 10.129.3.215
+        
 
         .then((r) => r.json())
         .then((data) => {
-          console.log(data);
+         
           setWordFrames(data);
         });
     }, []);
   }
 
-  // console.log(word.id)
-  // console.log(frame.id)
   function handleAddToWordFrame() {
     setButtons(!buttons);
     fetch("http://127.0.0.1:5555/wordframes", {
@@ -98,7 +61,6 @@ export default function Words({
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         // setFrame(data);
       })
       .catch((error) => {
@@ -115,7 +77,7 @@ export default function Words({
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       });
   }
   const handleButtonColor = () => {

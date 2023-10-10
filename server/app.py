@@ -226,6 +226,8 @@ class Frames(Resource):
             return response
         except:
             return {"no dice", 400}
+        
+    
 
 
 api.add_resource(Frames, '/frames')

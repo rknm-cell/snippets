@@ -27,7 +27,7 @@ export default function FrameCreator() {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          console.log(data)
+          // console.log(data)
           setFrame(data);
         });
         
@@ -35,7 +35,7 @@ export default function FrameCreator() {
   
   return (
     <Formik>
-      <View style={styles.container}>
+      <View style={styles.frameCreator}>
         
         <TextInput
           style={styles.frameinput}

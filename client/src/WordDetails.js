@@ -23,7 +23,7 @@ export default function WordDetails({ route, frame }){
     const [sound, setSound] = useState();
     // const wordInFrame = frameWordCtx.ids.includes(word.id);
 
-    console.log(word)
+    // console.log(word)
     // const soundPlay = require(`${word.audio_url}`);
     // async function playSound() {
     //     console.log("Loading Sound");
@@ -48,11 +48,11 @@ export default function WordDetails({ route, frame }){
       //       }
       //     : undefined;
       // }, [sound]);
-console.log(word.id)
-console.log(frame.id)
+// console.log(word.id)
+// console.log(frame.id)
 function handleAddToFrame () {
-    console.log(`${word.name} added to ${frame.name}`)
-    console.log(word.id)
+    // console.log(`${word.name} added to ${frame.name}`)
+    // console.log(word.id)
     fetch("http://127.0.0.1:5555/wordframes", {
         method: "POST",
         headers: {
@@ -65,7 +65,7 @@ function handleAddToFrame () {
       })
         .then((resp) => resp.json())
         .then((data) => {
-          console.log(data)
+          // console.log(data)
           setFrame(data);
         });
    

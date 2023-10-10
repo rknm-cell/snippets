@@ -20,8 +20,8 @@ export default function FrameEditScreen({ route, navigation }) {
     fetch("http://127.0.0.1:5555/frames")
       .then((r) => r.json())
       .then((data) => {
-        setFrames(data), 
-        console.log(data);
+        setFrames(data)
+        // console.log(data);
       });
   }, []);
   function renderFrames() {
@@ -36,16 +36,10 @@ export default function FrameEditScreen({ route, navigation }) {
         style={styles.button}
         onPress={() => {
           navigation.navigate(`FrameDetails`, { frame, edit })
-          console.log(frame);
+          
         }}
         />
         
-        // <Frame
-        //   key={frame.id}
-        //   frame={frame}
-        //   name={frame.name}
-        //   description={frame.description}
-        // />
         );
       });
     }

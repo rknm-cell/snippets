@@ -27,8 +27,7 @@ export default function WordContainerScreen({
   // const words = useSelector(state=> state.userReducer)
   const [words, setWords] = useGlobalState();
   const [sortValue, setSortValue] = useState("a.name > b.name");
-// console.log(filteredArray)
-//   console.log(edit);
+
   // const [words, setWords] = useState([]);
   useEffect(() => {
     fetch("http://127.0.0.1:5555/words")

@@ -87,9 +87,7 @@ export default function Words({
     return edit ? (
       <Button
         style={handleButtonColor}
-
         title={hasWord ? "✭" : "✩"}
-
         onPress={() => {
           hasWord ? handleRemoveFromFrame() : handleAddToWordFrame();
         }}

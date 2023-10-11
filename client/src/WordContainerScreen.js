@@ -73,7 +73,7 @@ export default function WordContainerScreen({
 
         
         <ScrollView contentContainerStyle={styles.contentContainer}>
-      
+        
        
         {renderWords()}
        

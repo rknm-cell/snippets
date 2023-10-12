@@ -28,6 +28,10 @@ export const styles = StyleSheet.create({
   ttsbutton: {
 
   },
+  ttsplaybutton: {
+    
+  },
+
   ttsinput: {
     textAlign: "center",
     fontSize: 25,

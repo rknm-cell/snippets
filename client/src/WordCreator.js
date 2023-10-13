@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Button, View, TextInput, ImageBackground, Alert } from "react-native";
+import {
+  Button,
+  View,
+  TextInput,
+  Text,
+  ImageBackground,
+  Alert,
+  Pressable,
+} from "react-native";
 
 import { Formik } from "formik";
 import * as Speech from "expo-speech";
@@ -68,13 +76,13 @@ export default function WordCreator() {
             onChangeText={(text) => setDescription(text)}
           />
 
-          {/* <Button
+          <Button
             title="Play phrase"
             style={styles.ttsplaybutton}
             onPress={speakText}
             disabled={isSpeaking}
-          /> */}
-          <TextToSpeech title="play phrase"/>
+          />
+          {/* <TextToSpeech title="play phrase"/> */}
           <Button
             title="Add word"
             style={styles.ttsbutton}

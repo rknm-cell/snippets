@@ -31,7 +31,7 @@ const TextToSpeech = ({ word }) => {
 
   return (
     
-      <Button title={word.description} onPress={speakText} disabled={isSpeaking} />
+      <Button title={word.name} onPress={speakText} disabled={isSpeaking} />
     
   );
 };

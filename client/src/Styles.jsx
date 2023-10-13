@@ -26,10 +26,17 @@ export const styles = StyleSheet.create({
     width: 10,
   },
   ttsbutton: {
+    height: 30,
+    fontSize: 25,
+    padding: 5
 
   },
+
   ttsplaybutton: {
-    
+    height: 30,
+    fontSize: 25,
+    padding: 5,
+    color: "red"
   },
 
   ttsinput: {

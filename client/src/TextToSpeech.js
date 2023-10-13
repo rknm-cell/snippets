@@ -6,7 +6,7 @@ import * as FileSystem from "expo-file-system";
 import { styles } from "./Styles";
 
 const TextToSpeech = ({ word }) => {
-  console.log(word.description);
+  
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const speakText = async () => {
@@ -30,9 +30,9 @@ const TextToSpeech = ({ word }) => {
   };
 
   return (
-    <View>
-      <Button title={word.name} onPress={speakText} disabled={isSpeaking} />
-    </View>
+    
+      <Button title={word.description} onPress={speakText} disabled={isSpeaking} />
+    
   );
 };
 

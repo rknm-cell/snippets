@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, Button, View, TextInput, ImageBackground } from "react-native";
-import WordContainerScreen from "./WordContainerScreen";
+import { Button, View, TextInput, ImageBackground, Alert } from "react-native";
+
 import { Formik } from "formik";
 import * as Speech from "expo-speech";
 import { styles } from "./Styles";
@@ -8,9 +8,9 @@ import { styles } from "./Styles";
 export default function WordCreator() {
   const [description, setDescription] = useState("");
   const [word, setWord] = useState([]);
-
+  const [isSpeaking, setIsSpeaking] = useState(false);
   const handleCreateWord = () => {
-    console.log("Created Word");
+    console.log(`Created ${description}`);
 
     fetch("http://127.0.0.1:5555/words", {
       method: "POST",
@@ -28,38 +28,56 @@ export default function WordCreator() {
         setWord(data);
       });
   };
-  const [isSpeaking, setIsSpeaking] = useState(false);
 
   const speakText = async () => {
     setIsSpeaking(true);
     Speech.speak(description, { rate: 0.75 });
     setIsSpeaking(false);
   };
+
+  const handleSubmission = () => {
+    if (description.trim() === "") {
+      Alert.alert("Error", "Please enter a word.");
+    } else {
+      // Add the logic to handle the word submission (e.g., add it to a list).
+      // You can replace the following line with your specific logic.
+
+      handleCreateWord();
+      console.log(`Word added to list: ${description}`);
+
+      // Show an alert
+      Alert.alert("Success", "Word added to list");
+
+      // Clear the input field
+      setDescription("");
+    }
+  };
   return (
     <Formik>
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <ImageBackground
-        style={styles.background}
-        resizeMode="cover"
-        source={require("./assets/dddepth-202.jpg")}>
-        <TextInput
-          style={styles.ttsinput}
-          placeholder="Text to speech"
-          onChangeText={(text) => setDescription(text)}
-        />
-        
-        <Button
-          title="Play phrase"
-          style={styles.ttsplaybutton}
-          onPress={speakText}
-          disabled={isSpeaking}
-        />
-        <Button
-          title="Add word"
-          style={styles.ttsbutton}
-          onPress={handleCreateWord}
-        />
-        
+          style={styles.background}
+          resizeMode="cover"
+          source={require("./assets/dddepth-202.jpg")}
+        >
+          <TextInput
+            style={styles.ttsinput}
+            value={description}
+            placeholder="Text to speech"
+            onChangeText={(text) => setDescription(text)}
+          />
+
+          <Button
+            title="Play phrase"
+            style={styles.ttsplaybutton}
+            onPress={speakText}
+            disabled={isSpeaking}
+          />
+          <Button
+            title="Add word"
+            style={styles.ttsbutton}
+            onPress={handleSubmission}
+          />
         </ImageBackground>
       </View>
     </Formik>

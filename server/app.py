@@ -213,19 +213,19 @@ class Frames(Resource):
         try:
             new_frame = Frame(
                 name=request.json['name'],
-                description=request.json['description'],
-                
-
+                description=request.json['description']
             )
             db.session.add(new_frame)
             db.session.commit()
-            new_frame_dict = new_frame.to_dict()
+            new_frame_dict = new_frame.to_dict(only=("id", "name", "description", ))
             response = make_response(
                 new_frame_dict, 201
             )
             return response
         except:
             return {"no dice", 400}
+    
+
         
     
 

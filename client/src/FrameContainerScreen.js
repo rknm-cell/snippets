@@ -26,12 +26,12 @@ export default function FrameContainerScreen({ route, navigation }) {
     return frames.map((frame) => {
       return (
         <Button
-          key={frame.name}
+          key={frame.id}
           title={frame.name}
           style={styles.button}
           onPress={() => {
             navigation.navigate(`FrameDetails`, { frame, edit });
-            console.log(frame);
+            
           }}
         />
         

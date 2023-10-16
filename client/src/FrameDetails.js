@@ -76,7 +76,6 @@ export default function FrameDetails({ route }) {
     <View style={styles.container}>
       <Text style={styles.framename}>{frame.name}</Text>
       <Text style={styles.framedescription}>{frame.description}</Text>
-      {/* <WordContainerScreen frame={frame} words={filteredArray}/> */}
       <WordContainerScreen
         edit={edit}
         filteredArray={filteredArray}

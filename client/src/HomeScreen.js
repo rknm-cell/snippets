@@ -12,10 +12,8 @@ import { styles } from "./Styles";
 const homeBackground = { uri: "/assets/dddepth-316.jpg" };
 
 export default function HomeScreen({ navigation, user, route}) {
-  // const login = user ? true : false
   const {login} = route.params; 
 
-// console.log(words)
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -25,10 +23,6 @@ export default function HomeScreen({ navigation, user, route}) {
         source={require("./assets/dddepth-316.jpg")}
       >
         <Text style={styles.melodytitle}>Melody Talker</Text>
-        
-      <Button style={styles.homescreenbutton}
-      title="Frames"
-      onPress={() => {navigation.navigate("FrameContainerScreen")}}/>
       
      
       <Button style={styles.homescreenbutton}

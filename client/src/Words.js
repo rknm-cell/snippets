@@ -10,7 +10,6 @@ import {
   ImageBackground,
 } from "react-native";
 import { styles } from "./Styles";
-import TextToSpeech from "./TextToSpeech";
 export default function Words({
   word,
   audio,

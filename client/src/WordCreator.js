@@ -12,8 +12,6 @@ import {
 import { Formik } from "formik";
 import * as Speech from "expo-speech";
 import { styles } from "./Styles";
-import TextToSpeech from "./TextToSpeech";
-
 export default function WordCreator() {
   const [description, setDescription] = useState("");
   const [word, setWord] = useState([]);
@@ -69,25 +67,30 @@ export default function WordCreator() {
           resizeMode="cover"
           source={require("./assets/dddepth-202.jpg")}
         >
-          <TextInput
-            style={styles.ttsinput}
-            value={description}
-            placeholder="Text to speech"
-            onChangeText={(text) => setDescription(text)}
-          />
+          <View>
 
+
+          <TextInput
+             style={styles.ttsinput}
+             value={description}
+             placeholder="Text to speech"
+             onChangeText={(text) => setDescription(text)}
+             onSubmitEditing={() => speakText()}
+             returnKeyType="done"
+             />
+
+             </View>
           <Button
-            title="Play phrase"
+            title="Play"
             style={styles.ttsplaybutton}
             onPress={speakText}
             disabled={isSpeaking}
           />
-          {/* <TextToSpeech title="play phrase"/> */}
           <Button
-            title="Add word"
-            style={styles.ttsbutton}
-            onPress={handleSubmission}
-          />
+  title="Add word"
+  style={styles.ttsbutton}
+  onPress={handleSubmission}
+/>
         </ImageBackground>
       </View>
     </Formik>

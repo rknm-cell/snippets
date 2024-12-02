@@ -16,31 +16,22 @@ import LogoutScreen from "./LogoutScreen";
 import SignupScreen from "./SignupScreen";
 import WordContainerScreen from "./WordContainerScreen";
 import FrameContainerScreen from "./FrameContainerScreen";
-import { createContext, useContext, useEffect, useState } from "react";
-// import AppStateProvider from "./AppStateContext";
-import { UserContext } from "./UserContext";
-import { Provider } from "react-redux";
-import { Store } from "./redux/store";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { useState } from "react";
+
 import { GlobalStateProvider, useGlobalState } from "./GlobalState";
 import FramesContextProvider from "./store/context/framesContext";
 import WordDetails from "./WordDetails";
 import FrameCreator from "./FrameCreator";
 import WordCreator from "./WordCreator";
-// import WordFrames from "./wordFrames";
 import FrameDetails from "./FrameDetails";
 import FrameEditScreen from "./FrameEditScreen";
-import TextToSpeechContainer from "./TextToSpeechContainer";
 const Tab = createBottomTabNavigator();
-// const UserContext = createContext();
 const Stack = createNativeStackNavigator();
 export default function App() {
   const [words, setWords] = useState([]);
   const [user, setUser] = useState(true);
   const [session, setSession] = useState(null);
-  // const [login, setLogin] = useState(true);
   const [word, setWord] = useState([]);
-  // console.log(user);
 
   return (
     <GlobalStateProvider>
@@ -51,13 +42,9 @@ export default function App() {
               name="Home"
               component={HomeScreen}
               initialParams={{ words }}
-              options={{ title: "Melody Talker" }}
+              options={{ title: "Melody Talker", headerShown: false }}
             />
-            <Stack.Screen
-              name="TextToSpeechContainer"
-              component={TextToSpeechContainer}
-              options={{ title: "TextToSpeechContainer" }}
-            />
+            
             <Stack.Screen
               name="WordContainerScreen"
               component={WordContainerScreen}

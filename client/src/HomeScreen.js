@@ -6,6 +6,7 @@ import {
   View,
   Text,
   ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import { styles } from "./Styles";
 
@@ -16,20 +17,21 @@ export default function HomeScreen({ navigation, user, route}) {
 
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <ImageBackground
+    <ImageBackground
         style={styles.background}
         resizeMode="cover"
         source={require("./assets/dddepth-316.jpg")}
       >
-        <Text style={styles.melodytitle}>Melody Talker</Text>
-      
-     
-      <Button style={styles.homescreenbutton}
-      title="Talk to text"
-      onPress={() => {navigation.navigate("WordCreator")}}/>
-      
+        <View style={styles.contentContainer}>
+          <Text style={styles.melodytitle}>Melody Talker</Text>
+          
+          <TouchableOpacity 
+            style={styles.homescreenbutton}
+            onPress={() => {navigation.navigate("WordCreator")}}
+          >
+            <Text style={styles.buttonText}>Talk to text</Text>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
-    </View>
   );
 }

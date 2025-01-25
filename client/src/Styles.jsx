@@ -1,163 +1,192 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    justifyContent: "center",
-    marginHorizontal: 16,
+    height: '100%',
+    width: '100%',
   },
-  words: {
-    flexDirection: "row",
-    alignContent: "center",
-    justifyContent: "center"
-  },
-  wordscontainer:{
-    flex: 1,
-    justifyContent: "center"
-  },
-  frameCreator: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+  blue: {
   },
   button: {
     flex: 1,
     marginVertical: 8,
     width: 10,
   },
-  ttsbutton: {
-    height: 30,
-    fontSize: 25,
-    padding: 5
-
-  },
-
-  ttsplaybutton: {
-    height: 30,
-    fontSize: 25,
-    padding: 5,
-    color: "red"
-  },
-
-  ttsinput: {
-    textAlign: "center",
-    fontSize: 25,
-    padding: 0,
-    width: 300,
-    height: 50,
-    alignSelf: "center",
-    
-   
-    borderRadius: 5,
-    marginVertical: 10,
-
-  },
-  framesbutton: {
-
-  },
-  homescreenbutton: {
-
-  },
-  header: {
-    height: 80,
-    paddingTop: 38,
-    backgroundColor: "coral",
-    borderRadius: 25,
-  },
-  view: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  input: {
-    flex: 1,
-    textAlign: "center",
-    fontSize: 25,
-    padding: 0,
-    width: 300,
-    height: 50,
-    justifyContent: "center",
-    alignSelf: "center",
-    borderWidth: 2,
-    borderColor: "red",
-  },
-  frameinput:{
-    height: 50,
-    fontSize: 20,
-
-  },
-  framename:{
-    justifyContent: "center",
-    alignSelf: "center",
+  buttonText: {
+    color: "white",
     fontSize: 20,
     fontWeight: "bold",
-    padding: 10,
-
   },
-  framedescription:{
-    justifyContent: "center",
-    alignSelf: "center",
-    padding: 5,
-  },
-  button: {
+  container: {
     flex: 1,
-    marginVertical: 8,
-    width: 30,
-    height: 50,
-    backgroundColor: "red",
-  },
-  deleteframebutton: 
-  {
-    padding: 20,
-  },
-  blue: {
-    
-  },
-  red: {
-    backgroundColor: "red",
-  },
-  title: {
-    textAlign: "center",
-    marginVertical: 8,
     justifyContent: "center",
-    alignItems: "center",
-    fontSize: 30,
-    padding: 25,
-    position: "relative",
+    marginHorizontal: 16,
   },
-  melodytitle: {
-    textAlign: "center",
+  contentContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  deleteframebutton: {
     padding: 20,
-    fontSize: 30,
-    fontWeight: "bold",
-    // justifyContent: "center",
-    // alignSelf: "center",
   },
   fixToText: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "#737373",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  background: {
-    height: 1000,
-    width: 1000,
-    justifyContent: "center",
+  frameCreator: {
+    alignItems: "center",
     flex: 1,
+    justifyContent: "center",
   },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: "#737373",
-    borderBottomWidth: StyleSheet.hairlineWidth,
+  framedescription: {
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: 5,
+  },
+  frameinput: {
+    fontSize: 20,
+    height: 50,
+  },
+  framename: {
+    alignSelf: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    justifyContent: "center",
+    padding: 10,
+  },
+  framesbutton: {
+  },
+  header: {
+    backgroundColor: "coral",
+    borderRadius: 25,
+    height: 80,
+    paddingTop: 38,
+  },
+  homescreenbutton: {
+    alignItems: "center",
+    backgroundColor: "pink",
+    borderRadius: 10,
+    elevation: 3,
+    height: 50,
+    justifyContent: "center",
+    marginTop: 20,
+    shadowColor: 'magenta',
+    shadowOffset: {
+      width: 2,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    width: 210,
+  },
+  input: {
+    alignSelf: "center",
+    borderColor: "red",
+    borderWidth: 2,
+    flex: 1,
+    fontSize: 25,
+    height: 50,
+    justifyContent: "center",
+    padding: 0,
+    textAlign: "center",
+    width: 300,
+  },
+  melodytitle: {
+    fontSize: 30,
+    fontWeight: "bold",
+    padding: 20,
+    textAlign: "center",
   },
   picker: {
     alignSelf: "top",
-    width: 100,
-    height: 30,
     fontSize: 16,
+    height: 30,
+    width: 100,
   },
-  
+  red: {
+    backgroundColor: "red",
+  },
+  separator: {
+    borderBottomColor: "#737373",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginVertical: 8,
+  },
+  title: {
+    alignItems: "center",
+    fontSize: 30,
+    justifyContent: "center",
+    marginVertical: 8,
+    padding: 25,
+    position: "relative",
+    textAlign: "center",
+  },
+  ttsinput: {
+    alignSelf: "center",
+    backgroundColor: "white",
+    opacity: 0.5,
+    borderRadius: 5,
+    fontSize: 25,
+    height: 50,
+    marginVertical: 10,
+    padding: 0,
+    textAlign: "center",
+    width: 300,
+  },
+  ttsplaybutton: {
+    alignItems: 'center',
+    backgroundColor: '#2196F3',
+    borderRadius: 10,
+    elevation: 3,
+    height: 40,
+    justifyContent: 'center',
+    marginVertical: 10,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    width: 150,
+  },
+  ttsbuttoncontainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  ttsbutton: {
+    alignItems: 'center',
+    backgroundColor: '#4CAF50',
+    borderRadius: 10,
+    elevation: 3,
+    height: 40,
+    justifyContent: 'center',
+    marginVertical: 10,
+    marginHorizontal: 2,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    width: 150,
+  },
+  view: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+  },
+  words: {
+    alignContent: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  wordscontainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
 });

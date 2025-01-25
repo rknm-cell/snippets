@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Alert,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 
 import { Formik } from "formik";
@@ -80,17 +81,22 @@ export default function WordCreator() {
              />
 
              </View>
-          <Button
-            title="Play"
+             <View style={styles.ttsbuttoncontainer}>
+
+          <TouchableOpacity
             style={styles.ttsplaybutton}
             onPress={speakText}
             disabled={isSpeaking}
-          />
-          <Button
-  title="Add word"
-  style={styles.ttsbutton}
-  onPress={handleSubmission}
-/>
+            >
+            <Text style={styles.buttonText}>Play</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.ttsbutton}
+            onPress={handleSubmission}
+            >
+            <Text style={styles.buttonText}>Add word</Text>
+          </TouchableOpacity>
+            </View>
         </ImageBackground>
       </View>
     </Formik>
